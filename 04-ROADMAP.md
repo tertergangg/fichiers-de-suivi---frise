@@ -1,6 +1,6 @@
 # Roadmap
 
-**Étape en cours : Lot 2 (fiches).** La phase 1 et le lot 1 sont terminés depuis le 2 novembre 2026. La phase 0 peut se faire en parallèle.
+**Étape en cours : lot 3.** La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
 
 ---
 
@@ -11,11 +11,11 @@
 - Valider ou modifier les décisions « proposées » de DECISIONS (fait le 2 novembre, sauf D10, reportée).
 - Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
 - Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
-- Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`), sans changement visuel.
+- Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`) et fondre les blocs « Ajouts de la version N » dans les sections qui leur correspondent, sans changement visuel.
 
-**Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
+**Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard »), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
-## Phase 1 · Migrer vers Astro, à l’identique
+## Phase 1 · Migrer vers Astro, à l’identique · Terminée le 2 novembre 2026
 Objectif : le même site, reconstruit avec Astro, sans aucun changement visible.
 1. Créer une branche `astro`. Installer Node.js et créer un projet Astro minimal qui s’affiche en local. Ajouter un `.gitignore` (node_modules, dist).
 2. Déplacer index.html, style.css et app.js dans Astro en changeant le moins de choses possible (essentiellement les chemins).
@@ -40,16 +40,17 @@ Un lot = une branche. À traiter dans cet ordre.
 - La poignée du panneau devient inaccessible quand on fait défiler la fiche (elle défile avec le texte).
 - La croix du panneau, un peu plus grande.
 
-**Lot 2 · Fiches** (avant la phase 2, dont les pages reprendront le contenu du panneau)
-- « Aussi » : mouvements non cliquables et sans majuscule. La colonne « Autres mouvements » devra contenir des identifiants.
-- Rubrique « Nationalité » ; « Rôle » renommé, par exemple « Pratiques » ; majuscule initiale à l’affichage.
-- Fiche mouvement : « Artistes majeurs » ; « Œuvres » divisée en œuvres majeures et autres œuvres. Seules les œuvres majeures auront une analyse.
+**Lot 2 · Fiches** · Terminé le 2 novembre 2026
+- « Aussi » : mouvements cliquables et avec majuscule. La colonne « Autres mouvements » contient désormais des identifiants.
+- Rubrique « Nationalité » (retirée du sous-titre) ; « Rôle » affiché « Disciplines » ; majuscule initiale à l’affichage.
+- Fiche mouvement : « Artistes majeurs » ; « Œuvres » divisée en « Œuvres majeures » et « Autres œuvres », avec le nom de l’artiste sur la même ligne. Seules les œuvres majeures auront une analyse.
 - Clic sur l’image d’une œuvre : l’afficher en grand.
+- En plus : libellés des fiches (Nationalité, Disciplines, Mouvement…) un peu plus grands.
 
 **Après D10**
 - Œuvre protégée : message du type « Nous n’avons pas encore les droits pour afficher cette œuvre, mais vous pouvez la retrouver ici », avec un lien.
 
-**Lot 3 · Design** (demande explicite, en accord avec D3)
+**Lot 3 · Design** (demande explicite, en accord avec D3 ; après le rangement de style.css en phase 0)
 - Couleur de fond (pistes : ivoire `#FAF7F0`, papier ambré `#F5EEDF`, kraft `#EFE3CC`) et mode sombre plus doux (brun très foncé, blanc cassé, ombres sombres).
 - Bandeau du haut trop vide, surtout à droite.
 - Étiquettes d’artistes trop vides dans la vue mouvement.
@@ -57,6 +58,7 @@ Un lot = une branche. À traiter dans cet ordre.
 
 **Plus tard (phase 2 ou 3)**
 - Un menu pour accéder aux différentes sections du site.
+- Contenu : ajouter le néo-impressionnisme à l’onglet Mouvements (avec sa fiche), puis remplacer « néo-impressionnisme » par son identifiant dans la colonne « Autres mouvements » de Seurat. `construire.py` suggérera l’identifiant.
 
 ## Phase 2 · Une page par fiche
 - Créer un gabarit de page pour les mouvements, les artistes et les œuvres, dans le style du panneau.

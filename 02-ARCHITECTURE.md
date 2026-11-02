@@ -30,10 +30,10 @@ fiches/
   _gabarits/                modèles : gabarit-mouvement.md, gabarit-artiste.md, gabarit-oeuvre.md
   mouvements/  artistes/  oeuvres/     une fiche = un fichier <id>.md
 src/
-  pages/index.astro         structure de la page de la frise (≈ 50 lignes)
+  pages/index.astro         structure de la page de la frise (≈ 60 lignes, dont la visionneuse d’images)
 public/                     copié tel quel dans dist/
-  style.css                 apparence (≈ 330 lignes)
-  app.js                    fonctionnement de la frise (≈ 540 lignes)
+  style.css                 apparence (≈ 365 lignes)
+  app.js                    fonctionnement de la frise (≈ 560 lignes)
   data.js                   GÉNÉRÉ par construire.py : ne jamais le modifier à la main
   images/
   favicon.svg  favicon.ico  logos par défaut d’Astro (à remplacer en phase 3)
@@ -44,21 +44,28 @@ docs/                       ancienne V1, figée au 29 octobre, à supprimer (voi
 Une ligne compte comme un élément si sa colonne `ID` est remplie. Colonnes lues par `construire.py` :
 - **Mouvements** : ID, Nom, Début, Fin, Lieu, Couleur, Résumé court (1 phrase).
 - **Artistes** : ID, Nom complet, Naissance, Décès, Nationalité, Rôle, Mouvement principal, Autres mouvements, Phrase-clé (1 phrase).
+  - « Autres mouvements » contient des **identifiants de mouvements séparés par des virgules** (`fauvisme, cubisme`).
 - **Œuvres** : ID, Titre, Artiste (ID), Année, Mouvement, Date affichée, Type, Musée, Ville, Majeure (Bible), Lien image, Résumé court (1 phrase).
 - **Événements** : ID, Année, Date précise, Titre, Lieu, Mouvement, Description (1-2 phrases).
 - **Influences** : ID, De (ID), Vers (ID), Type, Explication (1-2 phrases).
 Les autres colonnes (Fichier fiche, Statut fiche, Nb…, Domaine public ?, Notes / corrections) servent au suivi et ne sont pas lues. L’onglet « Lisez-moi » non plus.
+Le tableur contient des listes déroulantes Excel qu’openpyxl ne sait pas lire : d’où l’avertissement `Data Validation extension is not supported`, sans danger puisque construire.py n’enregistre jamais le fichier.
 
 ## construire.py
 1. Lit les cinq onglets.
 2. Pour chaque mouvement, artiste et œuvre, lit `fiches/<dossier>/<id>.md`. Il retire l’en-tête YAML, le premier titre `#` et les commentaires `<!-- -->`. Une fiche qui contient moins d’une vingtaine de caractères de vrai texte est considérée comme vide : le site affiche alors « fiche à venir ».
-3. Remplace l’apostrophe droite par l’apostrophe typographique dans les textes affichés (fonction `typo`), jamais dans les identifiants.
-4. Vérifie la cohérence et affiche des avertissements : mouvement ou artiste inconnu, fiche manquante, année manquante, identifiant en double.
+3. Met en forme les textes affichés, jamais les identifiants :
+   - `typo` remplace l’apostrophe droite par l’apostrophe typographique ;
+   - `majuscule` met une majuscule à la première lettre de la nationalité et du rôle, sans toucher au reste ;
+   - `lire_autres` découpe « Autres mouvements » en liste. Une valeur qui n’est pas un identifiant de mouvement est signalée et gardée en texte, avec une majuscule.
+4. Vérifie la cohérence et affiche des avertissements : mouvement, autre mouvement ou artiste inconnu (avec l’identifiant suggéré quand le texte ressemble au nom d’un mouvement), fiche manquante, année manquante, identifiant en double.
 5. Écrit `public/data.js` sous la forme `window.FRISE = { mouvements, artistes, oeuvres, evenements, influences }`.
 
 ## Format des données (window.FRISE)
 - **mouvement** : id, nom, debut, fin, lieu, couleur, resume, fiche, ficheVide
 - **artiste** : id, nom, naissance, deces, nationalite, role, mouvement, autres, phrase, fiche, ficheVide
+  - `autres` est une **liste** : des identifiants de mouvements, ou du texte pour une valeur inconnue.
+  - `role` est affiché sous le libellé « Disciplines ».
 - **oeuvre** : id, titre, artiste, annee, mouvement, dateAffichee, type, musee, ville, majeure (booléen), image, resume, fiche, ficheVide
 - **evenement** : id, annee, date, titre, lieu, mouvement, description
 - **influence** : de, vers, type, explication
@@ -69,7 +76,10 @@ Le champ `fiche` contient le Markdown de la fiche, ou une chaîne vide si elle n
 - Lit `window.FRISE`. L’objet `REGLAGES`, en tête du fichier, contient les réglages : années affichées (1860 à 1966, départ en 1870), pixels par an, tailles des cartes et des lignes, marges de la vue mouvement.
 - **Trois vues** : « détail » (la frise complète, une carte par œuvre, vue par défaut), « ensemble » (toute la période sans défilement) et « mouvement » (un mouvement en grand, une ligne par artiste).
 - **Navigation** : glisser à la souris, flèches du clavier, barre des décennies, sommaire des mouvements, recherche insensible aux accents, case « Œuvres majeures seulement ».
-- **Fiches** : une bulle d’aperçu au survol d’une œuvre, et un panneau latéral redimensionnable (poignée, clavier, double-clic pour la taille par défaut).
+- **Fiches** : une bulle d’aperçu au survol d’une œuvre, et un panneau latéral redimensionnable (poignée, clavier, double-clic pour la taille par défaut). Le contenu du panneau est fabriqué par `ficheOeuvre`, `ficheArtiste`, `ficheMouvement` et `ficheEvenement` :
+  - artiste : dates en sous-titre, puis Nationalité, Disciplines, Mouvement, Aussi (liens), le texte, les œuvres et les liens ;
+  - mouvement : le texte, puis Artistes majeurs, Moments clés, Œuvres majeures, Autres œuvres (avec le nom court de l’artiste à droite de chaque ligne).
+- **Image en grand** : l’image d’une fiche œuvre est dans un bouton (`.agrandir`). Un clic, ou Entrée au clavier, l’ouvre dans le `<dialog id="visionneuse">` d’index.astro avec `showModal()`. Un clic n’importe où la referme ; Échap ne ferme que l’image, pas la fiche.
 - **Liens internes** : dans les fiches, `[[id]]` ou `[[id|texte]]` devient un lien `#id`. L’adresse de la page prend la forme `#id` quand une fiche est ouverte, et une adresse en `#id` ouvre directement la fiche.
 - Le Markdown est converti dans le navigateur par **marked**, chargé depuis jsDelivr (version 18.0.14).
 - **Accessibilité** : attributs ARIA, focus visible, navigation au clavier, respect de `prefers-reduced-motion`. À préserver.
@@ -120,7 +130,7 @@ src/
 
 ## Points à trancher le moment venu
 - **Phase 1** : comment `frise.js` reçoit les données (import du JSON ou injection dans la page) ; si `marked` reste chargé depuis le CDN ou si le Markdown est converti au moment du build.
-- **Phase 2** : les liens `[[id]]` doivent mener vers `#id` dans le panneau de la frise et vers `/artistes/id/` sur les pages ; une seule fonction partagée doit gérer les deux cas. Il faut aussi décider si les fiches non rédigées ont une page.
+- **Phase 2** : les liens `[[id]]` doivent mener vers `#id` dans le panneau de la frise et vers `/artistes/id/` sur les pages ; une seule fonction partagée doit gérer les deux cas. Il faut aussi décider si les fiches non rédigées ont une page. Enfin, le contenu des fiches est aujourd’hui fabriqué dans app.js (`ficheArtiste`, `ficheMouvement`…) : les pages devront le reprendre sans le dupliquer, par exemple avec des fonctions partagées dans `src/lib/`.
 - **Phase 5** : l’organisation des fichiers pour la version anglaise (`/en/…`). À décider avant de commencer, pas pendant.
 
 ## Déploiement visé

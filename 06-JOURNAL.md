@@ -4,6 +4,29 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 2 novembre 2026 · Lot 2 terminé : fiches
+**Fait**
+- **Fiche artiste.** La nationalité quitte le sous-titre (qui ne garde que les dates) pour une rubrique « Nationalité ». « Rôle » s’affiche « Disciplines » ; la colonne « Rôle » et le champ `role` ne changent pas. Nouvelle fonction `majuscule()` dans construire.py, appliquée à la nationalité et au rôle (et non `capitalize()`, qui mettrait le reste en minuscules).
+- **« Aussi » cliquable.** La colonne « Autres mouvements » contient des identifiants séparés par des virgules. Nouvelle fonction `lire_autres()` dans construire.py : elle en fait une liste, signale chaque valeur inconnue (en suggérant l’identifiant quand le texte ressemble au nom d’un mouvement) et la garde en texte simple avec une majuscule. Le champ `autres` de data.js devient une liste. Dans le tableur : `surrealisme` pour tzara et arp ; « surréalisme (proche) » retiré pour picasso ; « néo-impressionnisme » gardé en texte pour seurat, en attendant l’ajout du mouvement.
+- **Fiche mouvement.** « Artistes majeurs » ; « Œuvres majeures » puis « Autres œuvres ». Dans ces listes, le nom court de l’artiste est sur la même ligne, calé à droite (classe `avec-artiste`, `listeOeuvres()` devenue une déclaration de fonction).
+- **Libellés des fiches** (`.fiche dt`) passés de 0,8 à 0,9 rem.
+- **Image en grand.** Un `<dialog id="visionneuse">` dans index.astro, ouvert par `showModal()`. L’image du panneau est dans un bouton invisible (`.agrandir`) pour s’ouvrir aussi au clavier. Un clic n’importe où la ferme ; Échap ne ferme que l’image, pas la fiche.
+- Branche `corrections-lot2-v1` testée en local, poussée, fusionnée dans `main`.
+
+**Reste à faire**
+- Phase 0, à faire avant le lot 3 : le lot 3 modifiera style.css, qu’il vaut mieux ranger d’abord.
+
+**Problèmes ouverts**
+- `python construire.py` garde un avertissement (Seurat, « néo-impressionnisme ») tant que ce mouvement n’est pas dans l’onglet Mouvements. Voir ROADMAP, « Plus tard ».
+- openpyxl affiche `UserWarning: Data Validation extension is not supported and will be removed`. C’est sans danger : le tableur contient des listes déroulantes, et construire.py ne fait que lire le fichier, sans jamais l’enregistrer.
+- Le champ `role` est affiché sous le libellé « Disciplines » : petit décalage de nom, à garder en tête.
+- Le HTML des fiches grossit dans app.js, et la phase 2 devra le reproduire dans les pages Astro. À prévoir dans `src/lib/`.
+- style.css : le bloc « Image d’une œuvre en grand » s’ajoute en fin de fichier. Le rangement de la phase 0 devient plus pressant.
+- Noms courts : si deux artistes d’un même mouvement partagent un nom de famille, les listes de la fiche mouvement les confondront. `NOMS_COURTS` permet de corriger.
+- Les problèmes ouverts des entrées précédentes restent valables : wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon.
+
+**Décisions prises** : aucune. Propositions écartées : ajouter `~$*` au `.gitignore` ; signaler dans construire.py une œuvre non majeure dont la fiche est rédigée ; noter dans CONVENTIONS l’exception `rgba` du voile `::backdrop`.
+
 ## 2 novembre 2026 · Lot 1 terminé : corrections de la V1
 **Fait**
 - Bulle d’aperçu : elle disparaît désormais quand on quitte une œuvre. Cause : `.bulle.riche { display: flex }` écrasait `.bulle[hidden] { display: none }` (même spécificité, c’est la dernière règle écrite qui gagne). Correction : ajout du sélecteur `.bulle.riche[hidden]`.
