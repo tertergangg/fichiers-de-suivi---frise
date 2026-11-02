@@ -4,33 +4,40 @@ Ce document décrit le site tel qu’il est (partie A) et tel qu’il doit deven
 
 ---
 
-# A. État actuel : V1, statique, sans framework (octobre 2026)
+# A. État actuel : V1, statique, fabriquée par Astro (novembre 2026)
 
 ## Flux des données
 ```
 donnees/frise_art_moderne_base.xlsx ─┐
-                                     ├─> python construire.py ─> docs/data.js ─> docs/index.html
-fiches/<type>/<id>.md ───────────────┘                                          + app.js + style.css
+                                     ├─> python construire.py ─> public/data.js ─┐
+fiches/<type>/<id>.md ───────────────┘                                           ├─> npm run build ─> dist/
+src/pages/index.astro + public/ (app.js, style.css, images) ─────────────────────┘
 ```
-Le site lui-même ne lit ni le tableur ni les fiches : il ne lit que `docs/data.js`, produit par `construire.py`.
+Le site lui-même ne lit ni le tableur ni les fiches : il ne lit que `data.js`, produit par `construire.py`. Astro transforme `index.astro` en `dist/index.html` et copie le dossier `public/` tel quel dans `dist/`.
 
 ## Arborescence
-C’est l’état de la branche `main`, celle qui est en ligne. La branche `astro` ajoute le projet Astro : `package.json`, `astro.config.mjs`, `src/pages/index.astro` et `public/`. Sur cette branche, construire.py écrit `public/data.js` et wrangler publie `./dist` (voir JOURNAL).
+C’est l’état de la branche `main`, celle qui est en ligne.
 ```
 LISEZMOI.md                 mode d’emploi (en partie périmé, voir JOURNAL)
-construire.py               tableur + fiches -> docs/data.js (Python, librairie openpyxl)
-wrangler.jsonc              configuration Cloudflare : publie le dossier ./docs
+construire.py               tableur + fiches -> public/data.js (Python, librairie openpyxl)
+package.json                projet Astro : dépendance astro, scripts dev, build, preview
+astro.config.mjs            configuration d’Astro (par défaut, vide)
+wrangler.jsonc              configuration Cloudflare : lance npm run build, publie ./dist
+.gitignore                  ignore node_modules/, dist/, .astro/
 donnees/
   frise_art_moderne_base.xlsx
 fiches/
   _gabarits/                modèles : gabarit-mouvement.md, gabarit-artiste.md, gabarit-oeuvre.md
   mouvements/  artistes/  oeuvres/     une fiche = un fichier <id>.md
-docs/                       le site publié
-  index.html                structure de la page (≈ 50 lignes)
+src/
+  pages/index.astro         structure de la page de la frise (≈ 50 lignes)
+public/                     copié tel quel dans dist/
   style.css                 apparence (≈ 330 lignes)
   app.js                    fonctionnement de la frise (≈ 540 lignes)
   data.js                   GÉNÉRÉ par construire.py : ne jamais le modifier à la main
   images/
+  favicon.svg  favicon.ico  logos par défaut d’Astro (à remplacer en phase 3)
+docs/                       ancienne V1, figée au 29 octobre, à supprimer (voir JOURNAL)
 ```
 
 ## Le tableur
@@ -47,7 +54,7 @@ Les autres colonnes (Fichier fiche, Statut fiche, Nb…, Domaine public ?, Notes
 2. Pour chaque mouvement, artiste et œuvre, lit `fiches/<dossier>/<id>.md`. Il retire l’en-tête YAML, le premier titre `#` et les commentaires `<!-- -->`. Une fiche qui contient moins d’une vingtaine de caractères de vrai texte est considérée comme vide : le site affiche alors « fiche à venir ».
 3. Remplace l’apostrophe droite par l’apostrophe typographique dans les textes affichés (fonction `typo`), jamais dans les identifiants.
 4. Vérifie la cohérence et affiche des avertissements : mouvement ou artiste inconnu, fiche manquante, année manquante, identifiant en double.
-5. Écrit `docs/data.js` sous la forme `window.FRISE = { mouvements, artistes, oeuvres, evenements, influences }`.
+5. Écrit `public/data.js` sous la forme `window.FRISE = { mouvements, artistes, oeuvres, evenements, influences }`.
 
 ## Format des données (window.FRISE)
 - **mouvement** : id, nom, debut, fin, lieu, couleur, resume, fiche, ficheVide
@@ -74,7 +81,10 @@ Le champ `fiche` contient le Markdown de la fiche, ou une chaîne vide si elle n
 - Police Archivo (Google Fonts). La couleur de chaque mouvement vient du tableur.
 
 ## Déploiement
-Cloudflare publie le dossier `./docs` comme site statique (`wrangler.jsonc`, rubrique `assets`). Le site était auparavant publié sur GitHub Pages depuis `/docs` ; la migration vers Cloudflare est en cours.
+À chaque push, Cloudflare installe les dépendances, puis lance la Deploy command `npx wrangler deploy`. Wrangler lit le bloc `build` de `wrangler.jsonc`, lance `npm run build`, puis publie `./dist`. Dans le tableau de bord, la Build command de l’onglet Production reste vide, sans quoi le site serait fabriqué deux fois.
+- Branche de production : `main`. Adresse : https://frise-chronologique---art-moderne.tjimblet.workers.dev
+- Les autres branches ont une version de test (encadré « Previews »), publiée par `wrangler preview` (commande en bêta) grâce au bloc `"previews": {}`.
+- wrangler n’est pas dans les dépendances : `npx` télécharge la dernière version à chaque déploiement (voir JOURNAL).
 
 ---
 
@@ -84,7 +94,7 @@ Les choix marqués « proposé » dans DECISIONS restent à valider. Ce plan ser
 
 ## Principes
 1. **Les sources ne bougent pas.** Le tableur et les fiches restent la source de vérité et se modifient comme aujourd’hui.
-2. **construire.py reste la porte d’entrée des données** et garde toutes ses vérifications. Il écrit désormais `src/data/frise.json` au lieu de `docs/data.js`.
+2. **construire.py reste la porte d’entrée des données** et garde toutes ses vérifications. Il écrit désormais `src/data/frise.json` au lieu de `public/data.js`.
 3. **Astro génère des pages HTML statiques** : la frise sur la page d’accueil, plus une page par fiche. Pas de serveur ni de base de données.
 4. **La frise reste en JavaScript simple** : `app.js` devient un script de la page d’accueil, presque inchangé.
 5. **Aucun framework d’interface** (React, Vue…) ni de CSS (Tailwind…).
@@ -114,4 +124,4 @@ src/
 - **Phase 5** : l’organisation des fichiers pour la version anglaise (`/en/…`). À décider avant de commencer, pas pendant.
 
 ## Déploiement visé
-Cloudflare lance `npm run build` et publie le dossier `./dist`. Comme `frise.json` est commité, Cloudflare n’a besoin ni de Python ni du tableur.
+C’est déjà le cas depuis la phase 1 : Cloudflare lance `npm run build` (via `wrangler.jsonc`) et publie le dossier `./dist`. Comme `frise.json` sera commité, Cloudflare n’aura besoin ni de Python ni du tableur.

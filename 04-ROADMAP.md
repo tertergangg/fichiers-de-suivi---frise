@@ -1,6 +1,6 @@
 # Roadmap
 
-**Étape en cours : Phase 1, étape 5 (fusion).** Les étapes 1 à 4 sont faites et la liste de contrôle est validée sur l’aperçu Cloudflare. La phase 0 peut se faire en parallèle.
+**Étape en cours : Lot 1 (corrections).** La phase 1 est terminée depuis le 2 novembre 2026. La phase 0 peut se faire en parallèle.
 
 ---
 
@@ -8,7 +8,9 @@
 - Mettre à jour LISEZMOI.md pour qu’il décrive les vrais outils (Excel, VS Code, Cloudflare) et le vrai fonctionnement de app.js.
 - Régler le cas des fiches qui n’ont pas de ligne dans le tableur (voir JOURNAL).
 - Ajouter à construire.py un avertissement pour ces fiches orphelines, pour que le cas ne se reproduise pas en silence.
-- Valider ou modifier les décisions « proposées » de DECISIONS.
+- Valider ou modifier les décisions « proposées » de DECISIONS (fait le 2 novembre, sauf D10, reportée).
+- Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
+- Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
 
 **Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
@@ -17,8 +19,8 @@ Objectif : le même site, reconstruit avec Astro, sans aucun changement visible.
 1. Créer une branche `astro`. Installer Node.js et créer un projet Astro minimal qui s’affiche en local. Ajouter un `.gitignore` (node_modules, dist).
 2. Déplacer index.html, style.css et app.js dans Astro en changeant le moins de choses possible (essentiellement les chemins).
 3. Adapter construire.py pour Astro. Pour la phase 1, il suffit d’écrire `public/data.js` (fait). Le passage à `src/data/frise.json` peut attendre la phase 2, où les pages en auront besoin.
-4. Régler Cloudflare : `wrangler.jsonc` publie `./dist` (fait). Dans Settings > Build, mettre la commande de build sur `npm run build` et cocher « Builds for non-production branches ». Tester ensuite sur l’adresse de prévisualisation de la branche (encadré « Previews »). D’ici la fusion, ne plus pousser sur `main`.
-5. Fusionner dans `main`.
+4. Régler Cloudflare : `wrangler.jsonc` publie `./dist` et lance lui-même `npm run build` (bloc `build`), car Cloudflare ignorait la commande saisie dans le tableau de bord. Tester sur l’adresse de prévisualisation de la branche (fait).
+5. Fusionner dans `main` (fait le 2 novembre 2026, déploiement de production validé).
 
 **Terminé quand** : `npm run build` passe sans erreur, et chaque point ci-dessous fonctionne comme avant, sur ordinateur et sur téléphone :
 - les trois vues (détail, ensemble, mouvement) ;
@@ -27,7 +29,7 @@ Objectif : le même site, reconstruit avec Astro, sans aucun changement visible.
 - la bulle d’aperçu et le panneau (ouvrir, fermer, redimensionner) ;
 - une adresse en `#id` ouvre la bonne fiche ;
 - les modes clair et sombre.
-Il faut aussi comparer des captures d’écran avant et après.
+Les captures d’écran avant/après prévues au départ ont été abandonnées le 2 novembre 2026 : la liste de contrôle a suffi.
 
 ## Lots après la phase 1 (défauts et souhaits relevés sur la V1)
 Un lot = une branche. À traiter dans cet ordre.

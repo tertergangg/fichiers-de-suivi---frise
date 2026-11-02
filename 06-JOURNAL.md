@@ -4,6 +4,27 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 2 novembre 2026 · Phase 1 terminée : fusion de astro dans main
+**Fait**
+- Vérifications avant la fusion : `astro` propre et à jour avec GitHub, `main` inchangée depuis le 30 octobre, `public/data.js` bien suivi par Git.
+- Réglages Cloudflare vérifiés. Onglet Production : branche `main`, Build command vide, Deploy command `npx wrangler deploy`. Onglet « Previews Base » inchangé.
+- Fusion de `astro` dans `main` (commit de fusion), puis push.
+- Premier déploiement de production réussi : `npx wrangler deploy` (wrangler 4.156.2) lance bien le bloc `build` de `wrangler.jsonc` (lignes `[custom build]` dans le journal de Cloudflare). Aucun fichier n’a été renvoyé, sans doute parce qu’ils étaient identiques à ceux de l’aperçu.
+- Liste de contrôle de la phase 1 validée en production.
+
+**Reste à faire**
+- Lot 1 (corrections de la V1), puis la phase 0 en parallèle ou juste après.
+
+**Problèmes ouverts**
+- **wrangler n’est pas dans les dépendances.** `npx` télécharge la dernière version à chaque déploiement, et une nouvelle version pourrait changer le comportement du bloc `build`. Piste : l’ajouter en `devDependencies` à une version fixe. C’est à décider, puisque cela ajoute une dépendance.
+- **GitHub Pages et `docs/`.** Si GitHub Pages publie encore depuis `/docs`, supprimer ce dossier mettra l’ancienne adresse hors ligne, alors que la phase 3 prévoit d’y installer une redirection. À trancher avant de supprimer `docs/`.
+- Docstring de construire.py périmée (« écrit docs/data.js »).
+- Cloudflare, onglet « Previews Base » : la Build command et la Preview command sont toujours ignorées.
+- Cloudflare, champ « Production branch » : il doit rester sur `main`.
+- Habitude Git : lancer `git status` avant chaque commit et ajouter les fichiers un par un.
+
+**Décisions prises** : abandon des captures d’écran avant/après prévues pour la phase 1, car la liste de contrôle a suffi.
+
 ## 2 novembre 2026 · Phase 1 : décisions tranchées, aperçu Cloudflare fonctionnel
 **Fait**
 - Décisions : D7, D8 et D9 validées et précisées, D6 marquée « numéro non attribué », D10 reportée.
