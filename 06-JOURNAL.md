@@ -4,6 +4,22 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 2 novembre 2026 · Lot 1 terminé : corrections de la V1
+**Fait**
+- Bulle d’aperçu : elle disparaît désormais quand on quitte une œuvre. Cause : `.bulle.riche { display: flex }` écrasait `.bulle[hidden] { display: none }` (même spécificité, c’est la dernière règle écrite qui gagne). Correction : ajout du sélecteur `.bulle.riche[hidden]`.
+- Poignée du panneau : le panneau ne défile plus. C’est un nouveau div, `#interieur-panneau`, qui défile à sa place : la poignée reste donc visible. `ouvrir()` remet ce div en haut à chaque ouverture.
+- Croix du panneau : le carré garde sa taille (1,75 rem). La croix est plus grande et dessinée en CSS avec deux traits, car le « × » de la police Archivo n’était pas centré.
+- Branche `corrections-v1` testée en local, puis sur l’aperçu Cloudflare, puis en production après la fusion dans `main`.
+
+**Reste à faire**
+- Lot 2 (fiches), avec la phase 0 en parallèle.
+
+**Problèmes ouverts**
+- `style.css` : `.fermer` est défini à trois endroits et `.fiche .corps` à deux. Les blocs « Ajouts de la version N » empilés ont causé le bug de la bulle. Un rangement est à prévoir, sans changement visuel.
+- Les problèmes ouverts de l’entrée précédente restent valables : wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon.
+
+**Décisions prises** : aucune.
+
 ## 2 novembre 2026 · Phase 1 terminée : fusion de astro dans main
 **Fait**
 - Vérifications avant la fusion : `astro` propre et à jour avec GitHub, `main` inchangée depuis le 30 octobre, `public/data.js` bien suivi par Git.

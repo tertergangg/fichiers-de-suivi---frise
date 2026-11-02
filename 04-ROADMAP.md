@@ -1,6 +1,6 @@
 # Roadmap
 
-**Étape en cours : Lot 1 (corrections).** La phase 1 est terminée depuis le 2 novembre 2026. La phase 0 peut se faire en parallèle.
+**Étape en cours : Lot 2 (fiches).** La phase 1 et le lot 1 sont terminés depuis le 2 novembre 2026. La phase 0 peut se faire en parallèle.
 
 ---
 
@@ -11,6 +11,7 @@
 - Valider ou modifier les décisions « proposées » de DECISIONS (fait le 2 novembre, sauf D10, reportée).
 - Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
 - Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
+- Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`), sans changement visuel.
 
 **Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
@@ -34,7 +35,7 @@ Les captures d’écran avant/après prévues au départ ont été abandonnées 
 ## Lots après la phase 1 (défauts et souhaits relevés sur la V1)
 Un lot = une branche. À traiter dans cet ordre.
 
-**Lot 1 · Corrections**
+**Lot 1 · Corrections** · Terminé le 2 novembre 2026
 - La bulle d’aperçu ne disparaît pas quand le curseur quitte l’œuvre, tant qu’il ne passe pas sur un autre élément cliquable. Tests à faire : vue, endroit où va le curseur, navigateur.
 - La poignée du panneau devient inaccessible quand on fait défiler la fiche (elle défile avec le texte).
 - La croix du panneau, un peu plus grande.
