@@ -1,5 +1,7 @@
 # Roadmap
 
+# Roadmap
+
 **Étape en cours : lot 3.** La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
 
 ---
@@ -48,17 +50,29 @@ Un lot = une branche. À traiter dans cet ordre.
 - En plus : libellés des fiches (Nationalité, Disciplines, Mouvement…) un peu plus grands.
 
 **Après D10**
-- Œuvre protégée : message du type « Nous n’avons pas encore les droits pour afficher cette œuvre, mais vous pouvez la retrouver ici », avec un lien.
+- Œuvre protégée : message du type « Nous n’avons pas encore les droits pour afficher cette œuvre, mais vous pouvez la retrouver ici », avec un lien. Piste : le « cartel de musée » (voir « Idées à trier »).
 
 **Lot 3 · Design** (demande explicite, en accord avec D3 ; après le rangement de style.css en phase 0)
-- Couleur de fond (pistes : ivoire `#FAF7F0`, papier ambré `#F5EEDF`, kraft `#EFE3CC`) et mode sombre plus doux (brun très foncé, blanc cassé, ombres sombres).
-- Bandeau du haut trop vide, surtout à droite.
+- Couleur de fond (pistes : ivoire `#FAF7F0`, papier ambré `#F5EEDF`, kraft `#EFE3CC` ; Lovable propose ivoire `#F8F5EE`) et mode sombre plus doux (brun très foncé, blanc cassé, ombres sombres ; Lovable propose fond `#1A1715`, texte `#F3EEE3`, surfaces `#282320`).
+- Bandeau du haut trop vide, surtout à droite. À refaire dans l’esprit de la maquette Lovable du 3 novembre 2026 (titre à gauche, boutons à droite), en gardant la recherche, la case « Œuvres majeures seulement » et le sommaire des mouvements. Il accueille :
+  - un bouton « Une œuvre au hasard » (validé), qui ouvre la fiche d’une œuvre tirée au sort ;
+  - un bouton « Index », qui ouvre un tiroir sur le modèle du panneau des fiches, avec des onglets Mouvements, Artistes et Œuvres, une recherche et une liste. Le contenu exact du tiroir est à préciser au début du lot.
 - Étiquettes d’artistes trop vides dans la vue mouvement.
-- Un niveau de zoom intermédiaire entre la vue détail et la vue d’ensemble.
+- Un niveau de zoom intermédiaire entre la vue détail et la vue d’ensemble. Chaque œuvre y reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
 
 **Plus tard (phase 2 ou 3)**
-- Un menu pour accéder aux différentes sections du site.
+- Compléter l’Index avec les liens vers les nouvelles pages et sections, à mesure qu’elles existent (Chronologie, Mouvements, Artistes, Parcours, Lexique, À propos).
 - Contenu : ajouter le néo-impressionnisme à l’onglet Mouvements (avec sa fiche), puis remplacer « néo-impressionnisme » par son identifiant dans la colonne « Autres mouvements » de Seurat. `construire.py` suggérera l’identifiant.
+
+## Idées à trier (proposées par Lovable le 3 novembre 2026)
+Ces idées ne sont pas validées. Une conversation dédiée, avant le début de la phase 2, décidera de ce qu’on garde, sous quelle forme et dans quelle phase. Pour chaque idée retenue, il faudra aussi dire quel contenu est à rédiger : les sections de contenu demandent surtout de l’écriture.
+- **Page d’accueil distincte de la frise** (maquette Lovable) : grand titre, image, grille des mouvements, accès à la frise. C’est un changement d’architecture : aujourd’hui, la frise est la page d’accueil. Meilleur pour Google. À décider au début de la phase 2.
+- **Modèles pour les pages de la phase 2** (maquettes Lovable) : galerie d’œuvres filtrée par mouvement, page mouvement avec son texte, ses artistes et ses œuvres.
+- **Œuvres sans image** : un « cartel de musée » typographique (titre, date, technique, lieu, lien vers le site du musée). Les initiales proposées par Lovable ne conviennent pas (« Vv » pour van Gogh, et les mêmes initiales sur toutes les œuvres d’un artiste).
+- **Fiches de révision** : comparer deux mouvements (contexte, idées, techniques, manifeste, artistes), par exemple fauvisme et expressionnisme.
+- **Lexique & manifestes** : 20 à 30 définitions (pointillisme, primitivisme, ready-made…) et des extraits de manifestes (futurisme, 1909…). Droits à vérifier pour chaque extrait, traductions comprises.
+- **Chronologie des ruptures** : 10 à 15 repères d’histoire générale (Première Guerre mondiale, photographie, tube de peinture…) mis en regard de la frise, sans la surcharger.
+- **Rendre plus visibles deux éléments existants**, que Lovable n’a pas remarqués : le couloir « Contexte » (événements) et la rubrique « Liens » des fiches artistes (influences).
 
 ## Phase 2 · Une page par fiche
 - Créer un gabarit de page pour les mouvements, les artistes et les œuvres, dans le style du panneau.
@@ -66,6 +80,7 @@ Un lot = une branche. À traiter dans cet ordre.
 - Mettre en place le référencement de base : titre de page, description (le résumé court du tableur), adresse canonique, sitemap.xml, robots.txt.
 - Créer une page « À propos ».
 - À décider au début de la phase : les fiches non rédigées ont-elles une page ?
+- À décider au début de la phase : la page d’accueil reste-t-elle la frise, ou devient-elle une page qui y mène (voir « Idées à trier ») ? Dans le second cas, il faut aussi choisir l’adresse de la frise, qui devra rester stable (D9).
 
 **Terminé quand** : chaque fiche rédigée a sa page, une vérification automatique confirme qu’aucun lien interne n’est cassé, et le sitemap est généré.
 
@@ -76,7 +91,7 @@ Un lot = une branche. À traiter dans cet ordre.
 - Déclarer le site dans Google Search Console.
 
 ## Phase 4 · Parcours thématiques
-Format à définir avant de commencer.
+Format à définir avant de commencer. Les fiches de révision, le lexique et la chronologie des ruptures pourraient en faire partie (voir « Idées à trier »).
 
 ## Phase 5 · Version anglaise
 L’organisation des fichiers et des adresses (`/en/…`) est à décider avant de commencer.

@@ -130,7 +130,7 @@ src/
 
 ## Points à trancher le moment venu
 - **Phase 1** : comment `frise.js` reçoit les données (import du JSON ou injection dans la page) ; si `marked` reste chargé depuis le CDN ou si le Markdown est converti au moment du build.
-- **Phase 2** : les liens `[[id]]` doivent mener vers `#id` dans le panneau de la frise et vers `/artistes/id/` sur les pages ; une seule fonction partagée doit gérer les deux cas. Il faut aussi décider si les fiches non rédigées ont une page. Enfin, le contenu des fiches est aujourd’hui fabriqué dans app.js (`ficheArtiste`, `ficheMouvement`…) : les pages devront le reprendre sans le dupliquer, par exemple avec des fonctions partagées dans `src/lib/`.
+- - **Phase 2** : les liens `[[id]]` doivent mener vers `#id` dans le panneau de la frise et vers `/artistes/id/` sur les pages ; une seule fonction partagée doit gérer les deux cas. Il faut aussi décider si les fiches non rédigées ont une page, et si la page d’accueil reste la frise ou devient une page qui y mène (voir ROADMAP, « Idées à trier ») ; dans ce cas, `index.astro` deviendrait la page d’accueil et la frise aurait sa propre adresse. Enfin, le contenu des fiches est aujourd’hui fabriqué dans app.js (`ficheArtiste`, `ficheMouvement`…) : les pages devront le reprendre sans le dupliquer, par exemple avec des fonctions partagées dans `src/lib/`.
 - **Phase 5** : l’organisation des fichiers pour la version anglaise (`/en/…`). À décider avant de commencer, pas pendant.
 
 ## Déploiement visé

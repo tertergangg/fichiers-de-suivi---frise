@@ -4,6 +4,24 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 3 novembre 2026 · Exploration de design avec Lovable
+**Fait**
+- Question posée : reconstruire le site avec Lovable ? Réponse : non. Lovable produit du React, du TypeScript et du Tailwind, contraires à D1 et à l’architecture ; le design (D3) serait réécrit ; il pousse vers une base de données en ligne (contraire à D7) ; le référencement et le coût sont incertains ; la phase 1 serait perdue.
+- Lovable utilisé comme carnet de croquis : import du site par son adresse, liste d’idées, quelques maquettes (bandeau avec bouton Index, page d’accueil, tiroir Index, galerie d’œuvres, page mouvement, cartel pour les œuvres sans image). Rien de son code n’est repris.
+- Tri des idées : le fond, le mode sombre, le bandeau du haut, « Une œuvre au hasard » (validé) et le tiroir Index vont dans le lot 3 ; le reste va dans la nouvelle section « Idées à trier » de la ROADMAP. Idée écartée : remplacer les cartes par des compteurs par décennie pour le zoom intermédiaire.
+
+**Reste à faire**
+- Lot 3, dans une nouvelle conversation.
+- Une conversation dédiée, avant la phase 2, pour trier les « Idées à trier ».
+
+**Problèmes ouverts**
+- **La ROADMAP se contredit** : « le lot 3 passe avant la phase 0 » en haut, mais le lot 3 est annoncé « après le rangement de style.css en phase 0 ». À trancher au début du lot 3. Le lot 3 modifie les variables de style.css, d’où l’intérêt de ranger d’abord.
+- Crédits Lovable épuisés : les maquettes du bandeau, des étiquettes d’artistes, du zoom intermédiaire, des pages (accueil, mouvement, artiste, œuvre, À propos) et des sections de contenu n’ont pas été faites. Les trois messages prêts à envoyer sont dans la conversation du 3 novembre.
+- Garder les captures des maquettes Lovable en local (hors du dépôt) pour le lot 3 et la conversation de tri.
+- Les problèmes ouverts des entrées précédentes restent valables : wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon, avertissement de Seurat, HTML des fiches qui grossit dans app.js.
+
+**Décisions prises** : aucune. Proposition écartée : reconstruire le site avec Lovable.
+
 ## 2 novembre 2026 · Lot 2 terminé : fiches
 **Fait**
 - **Fiche artiste.** La nationalité quitte le sous-titre (qui ne garde que les dates) pour une rubrique « Nationalité ». « Rôle » s’affiche « Disciplines » ; la colonne « Rôle » et le champ `role` ne changent pas. Nouvelle fonction `majuscule()` dans construire.py, appliquée à la nationalité et au rôle (et non `capitalize()`, qui mettrait le reste en minuscules).
