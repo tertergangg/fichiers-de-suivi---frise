@@ -86,7 +86,7 @@ Le champ `fiche` contient le Markdown de la fiche, ou une chaîne vide si elle n
 
 ## style.css
 - Couleurs et polices définies par des variables CSS sur `:root`.
-- Mode sombre automatique (`prefers-color-scheme`), forçable avec `data-theme`.
+- Mode sombre par `:root[data-theme="dark"]`. L’attribut est toujours posé par le script du `<head>` d’index.astro : d’après le choix mémorisé (`localStorage`, clé `theme`), sinon d’après le réglage de l’appareil. Le bouton `#bouton-theme` le change (app.js, section « Thème »).
 - Version mobile en dessous de 720 px.
 - Police Archivo (Google Fonts). La couleur de chaque mouvement vient du tableur.
 

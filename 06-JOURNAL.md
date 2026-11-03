@@ -4,6 +4,30 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 3 novembre 2026 · Lot 3 : bouton clair/sombre (étape 2c)
+**Fait**
+- **Script dans le `<head>`** d’index.astro (`is:inline`). Il lit le choix mémorisé (`localStorage`, clé `theme`, valeurs `light` ou `dark`). Sans choix, il suit le réglage de l’appareil (`matchMedia`). Il pose toujours `data-theme` sur `<html>` avant l’affichage : pas de flash du mauvais thème. Il est écrit comme une fonction immédiatement appelée, pour que ses variables n’entrent pas en conflit avec celles d’app.js.
+- **Bouton de thème** (`#bouton-theme`), sous « Index », sur la deuxième ligne de l’en-tête, à droite de la case « Œuvres majeures seulement ». Les deux sont regroupées dans un nouveau bloc `.reglages`. Le bouton est carré, de la hauteur des boutons des mouvements, et aligné sur leur première rangée.
+  - Les icônes sont en SVG `currentColor` : une lune en mode clair, un soleil en mode sombre. Le CSS n’affiche que la bonne.
+  - Le style est partagé avec `.hasard` et `.bouton-index`, sans copie.
+- **app.js**, nouvelle section « Thème » avant « Démarrage ». Un clic inverse `data-theme` et mémorise le choix. Le libellé décrit l’action (« Passer en mode sombre » ou « Passer en mode clair ») ; il sert d’`aria-label` et de bulle au survol (`data-bulle`).
+- **Un seul bloc pour le mode sombre** dans style.css : le bloc `@media (prefers-color-scheme: dark)` est supprimé, puisque `data-theme` est toujours posé.
+- Choix : si l’appareil change de thème pendant la visite, la page ne suit qu’au prochain chargement. Pas de troisième état « suivre l’appareil ».
+- Branche `corrections-lot3-v1`, testée en local, commitée en deux commits.
+
+**Reste à faire**
+- Lot 3, étapes 3 à 6, dans une nouvelle conversation.
+- Décider de la fusion dans `main` : maintenant (après un test sur l’aperçu Cloudflare) ou à la fin du lot 3.
+
+**Problèmes ouverts**
+- Sans JavaScript, le site reste en mode clair. C’est sans conséquence, puisque la frise a besoin de JavaScript.
+- La clé `theme` et les valeurs `light`/`dark` sont écrites à deux endroits : le script du `<head>` et app.js.
+- La hauteur du bouton (`2.25rem`) est calée sur celle des boutons des mouvements, comme le `margin-top` de la case. Si ces boutons changent de taille, il faudra revoir les deux.
+- Après un clic, la bulle garde l’ancien libellé jusqu’au survol suivant.
+- Les problèmes ouverts de l’entrée précédente restent valables, sauf le double bloc du mode sombre, réglé : app.js qui grossit (découpage en phase 2), ligne des outils sur téléphone, position de l’Index non gardée, pas d’adresse `#index`, `aria-live` non testé avec un lecteur d’écran, rendu de la flèche ↗, blocs ajoutés en fin de style.css, wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon, avertissement de Seurat, HTML des fiches qui grossit dans app.js, `--fond-etiquette` inutilisée, `.filtre .pastille` définie deux fois.
+
+**Décisions prises** : aucune.
+
 ## 3 novembre 2026 · Lot 3 : tiroir Index (étape 2b)
 **Fait**
 - **Bouton « Index »** dans `.outils`, à droite de « Une œuvre au hasard ». Les trois traits de son icône sont dessinés en CSS (trois `linear-gradient` en `currentColor`) : ils changent de couleur avec le texte au survol.

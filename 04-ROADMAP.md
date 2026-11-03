@@ -1,8 +1,6 @@
 # Roadmap
 
-# Roadmap
-
-**Étape en cours : lot 3, étape 2c (bouton clair/sombre).** Les étapes 1, 2a et 2b du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
+**Étape en cours : lot 3, étape 3 (étiquettes d’artistes).** Les étapes 1, 2a, 2b et 2c du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
 
 ---
 
@@ -13,7 +11,7 @@
 - Valider ou modifier les décisions « proposées » de DECISIONS (fait le 2 novembre, sauf D10, reportée).
 - Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
 - Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
-- - Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`, `.filtre .pastille`) et fondre les blocs « Ajouts de la version N » dans les sections qui leur correspondent, sans changement visuel. Supprimer `--fond-etiquette`, inutilisée. Pour le double bloc du mode sombre, voir l’étape 2c du lot 3.
+- Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`, `.filtre .pastille`) et fondre les blocs « Ajouts de la version N » et ceux du lot 3 dans les sections qui leur correspondent, sans changement visuel. Supprimer `--fond-etiquette`, inutilisée.
 
 **Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard »), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
@@ -57,7 +55,7 @@ Un lot = une branche. À traiter dans cet ordre.
 2. **Bandeau du haut**, dans l’esprit de la maquette Lovable du 3 novembre 2026.
    - **2a** · Fait le 3 novembre 2026. Titre compact et sous-titre, recherche et bouton « Une œuvre au hasard » à droite, sommaire et case « Œuvres majeures seulement » sur la deuxième ligne. Défilement vertical jusqu’à l’œuvre ouverte.
    - **2b** · Fait le 3 novembre 2026. Bouton « Index » (icône à trois traits) qui ouvre l’Index dans le panneau des fiches. On y trouve « Comment lire la frise » (repliable), les onglets Mouvements, Artistes et Œuvres, une recherche, un compteur et une liste. Tri : mouvements par date, artistes de A à Z par nom de famille, œuvres par année. Une fiche ouverte depuis l’Index propose « ‹ Retour à l’index », qui retrouve l’onglet et la recherche.
-   - **2c** · Bouton clair/sombre : une lune, qui devient un soleil. Proposition : le réglage de l’appareil reste le choix par défaut à la première visite ; le bouton le change, et le choix est mémorisé. Prévoir un petit script dans le `<head>` pour éviter un flash du mauvais thème au chargement. Piste : si ce script pose toujours `data-theme`, style.css n’aurait plus besoin que d’un seul bloc pour le mode sombre.
+   - **2c** · Fait le 3 novembre 2026. Bouton clair/sombre, sous « Index » : une lune en mode clair, un soleil en mode sombre. Le réglage de l’appareil s’applique à la première visite ; le choix fait avec le bouton est mémorisé. Un script dans le `<head>` pose toujours `data-theme` avant l’affichage, ce qui évite le flash et ne laisse qu’un seul bloc sombre dans style.css.
 3. **Étiquettes d’artistes** trop vides dans la vue mouvement.
 4. **Un niveau de zoom intermédiaire** entre la vue détail et la vue d’ensemble. Chaque œuvre y reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
 5. **Croix de fermeture** dans le style de la maquette Lovable : un carré bordé sur le fond de la page, avec une croix fine et foncée, au lieu du carré noir plein. À vérifier : la même croix ferme l’image en grand, où une croix sans fond risque de mal se voir.
@@ -65,7 +63,7 @@ Un lot = une branche. À traiter dans cet ordre.
 
 **Lot 4 · Version téléphone** (phase dédiée, dans sa propre conversation, avant l’ouverture au public)
 - Revoir toute l’expérience sur petit écran.
-- Bandeau : la première ligne devra tenir le titre, l’Index, « Au hasard » et le bouton de thème. Piste : ranger « Au hasard » et le thème dans le tiroir Index sur téléphone.
+- Bandeau : la première ligne devra tenir le titre, l’Index et « Au hasard » ; le bouton de thème est déjà sur la deuxième ligne, à côté de la case « Œuvres majeures seulement ». Piste : ranger « Au hasard » dans le tiroir Index sur téléphone.
 - Les règles téléphone ajoutées aux étapes 2a et 2b du lot 3 (libellé court « Au hasard », recherche sur toute la largeur, liste des résultats accrochée à gauche, bouton « Index » dans la même ligne) sont provisoires. La ligne des outils déborde sans doute.
 
 **Plus tard (phase 2 ou 3)**
