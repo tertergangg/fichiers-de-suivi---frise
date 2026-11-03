@@ -2,7 +2,7 @@
 
 # Roadmap
 
-**Étape en cours : lot 3, étape 2b (tiroir Index).** Les étapes 1 et 2a du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
+**Étape en cours : lot 3, étape 2c (bouton clair/sombre).** Les étapes 1, 2a et 2b du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
 
 ---
 
@@ -56,7 +56,7 @@ Un lot = une branche. À traiter dans cet ordre.
 1. **Couleurs** · Fait le 3 novembre 2026. Mode clair : fond papier ambré `#F5EEDF`, cartes et panneau ivoire `#FAF7F0`. Mode sombre : fond brun `#1E1A16`, surfaces `#27221D`, texte blanc cassé `#F2EBDD`, ombres brunes `#574B3E`, un peu plus claires que le fond.
 2. **Bandeau du haut**, dans l’esprit de la maquette Lovable du 3 novembre 2026.
    - **2a** · Fait le 3 novembre 2026. Titre compact et sous-titre, recherche et bouton « Une œuvre au hasard » à droite, sommaire et case « Œuvres majeures seulement » sur la deuxième ligne. Défilement vertical jusqu’à l’œuvre ouverte.
-   - **2b** · Bouton « Index » et son tiroir : onglets Mouvements, Artistes et Œuvres, une recherche, un compteur (« 9 mouvements ») et une liste. Il accueille aussi le texte d’aide retiré du bandeau, sous le titre « Comment lire la frise ». Piste : l’afficher dans le panneau des fiches, avec un lien « Retour à l’index » qui retrouve l’onglet et la recherche. Contenu exact et tri des listes à préciser au début de l’étape.
+   - **2b** · Fait le 3 novembre 2026. Bouton « Index » (icône à trois traits) qui ouvre l’Index dans le panneau des fiches. On y trouve « Comment lire la frise » (repliable), les onglets Mouvements, Artistes et Œuvres, une recherche, un compteur et une liste. Tri : mouvements par date, artistes de A à Z par nom de famille, œuvres par année. Une fiche ouverte depuis l’Index propose « ‹ Retour à l’index », qui retrouve l’onglet et la recherche.
    - **2c** · Bouton clair/sombre : une lune, qui devient un soleil. Proposition : le réglage de l’appareil reste le choix par défaut à la première visite ; le bouton le change, et le choix est mémorisé. Prévoir un petit script dans le `<head>` pour éviter un flash du mauvais thème au chargement. Piste : si ce script pose toujours `data-theme`, style.css n’aurait plus besoin que d’un seul bloc pour le mode sombre.
 3. **Étiquettes d’artistes** trop vides dans la vue mouvement.
 4. **Un niveau de zoom intermédiaire** entre la vue détail et la vue d’ensemble. Chaque œuvre y reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
@@ -66,7 +66,7 @@ Un lot = une branche. À traiter dans cet ordre.
 **Lot 4 · Version téléphone** (phase dédiée, dans sa propre conversation, avant l’ouverture au public)
 - Revoir toute l’expérience sur petit écran.
 - Bandeau : la première ligne devra tenir le titre, l’Index, « Au hasard » et le bouton de thème. Piste : ranger « Au hasard » et le thème dans le tiroir Index sur téléphone.
-- Les règles téléphone ajoutées à l’étape 2a du lot 3 (libellé court « Au hasard », recherche sur toute la largeur, liste des résultats accrochée à gauche) sont provisoires.
+- Les règles téléphone ajoutées aux étapes 2a et 2b du lot 3 (libellé court « Au hasard », recherche sur toute la largeur, liste des résultats accrochée à gauche, bouton « Index » dans la même ligne) sont provisoires. La ligne des outils déborde sans doute.
 
 **Plus tard (phase 2 ou 3)**
 - Compléter l’Index avec les liens vers les nouvelles pages et sections, à mesure qu’elles existent (Chronologie, Mouvements, Artistes, Parcours, Lexique, À propos).

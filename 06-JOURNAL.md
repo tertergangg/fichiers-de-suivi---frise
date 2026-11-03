@@ -4,6 +4,43 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 3 novembre 2026 · Lot 3 : tiroir Index (étape 2b)
+**Fait**
+- **Bouton « Index »** dans `.outils`, à droite de « Une œuvre au hasard ». Les trois traits de son icône sont dessinés en CSS (trois `linear-gradient` en `currentColor`) : ils changent de couleur avec le texte au survol.
+- **L’Index s’affiche dans le panneau des fiches** (`#panneau`) et garde donc la croix, la poignée, Échap et la version téléphone. Alternative écartée : un tiroir séparé, qui aurait dupliqué tout cela.
+- **Contenu** :
+  - le titre « Index. » ;
+  - le bloc repliable « Comment lire la frise » (`<details>`), qui reprend le texte d’aide retiré du bandeau à l’étape 2a (constante `AIDE_FRISE`) ;
+  - les onglets Mouvements, Artistes et Œuvres (boutons `aria-pressed`) ;
+  - une recherche insensible aux accents (`sansAccent`) et un compteur (« 1 œuvre », « 9 mouvements ») ;
+  - la liste, avec une flèche ↗ sur chaque ligne.
+- **Tri** : mouvements par date de début ; artistes de A à Z par nom de famille (`nomCourt` + `localeCompare("fr")`) ; œuvres par année, puis par titre, celles sans année en fin de liste.
+- **Lignes** : mouvement « dates · lieu », artiste « dates · mouvement principal », œuvre « année · artiste ». L’Index liste toutes les œuvres, même quand la case « Œuvres majeures seulement » est cochée.
+- **Écarts volontaires avec la maquette Lovable** : la croix actuelle est gardée (nouveau style prévu à l’étape 5), tiret demi-cadratin entre les dates, mouvements triés par date.
+- **« ‹ Retour à l’index »** en haut des fiches ouvertes pendant que l’Index était ouvert. C’est le drapeau `etatIndex.actif` : `afficherIndex()` le met à `true`, `fermer()` à `false`. Le retour retrouve l’onglet et le texte cherché.
+- **Accessibilité** :
+  - `aria-live` du panneau coupé pendant l’Index, puis remis par `ouvrir()` ;
+  - libellés « Fermer le panneau » et « Redimensionner le panneau » ;
+  - à l’ouverture, le focus va dans le champ de recherche sur ordinateur, pas sur téléphone.
+- **style.css** : `.bouton-index` et `.onglet` partagent les règles de `.hasard`, et `.champ-index` celles de `.recherche input`, sans copie. Nouveau bloc « Index » en fin de fichier.
+- `app.js` (nouvelle section « Index » après `fermer()`) et `index.astro` modifiés. Branche `corrections-lot3-v1`, testée en local, commitée.
+
+**Reste à faire**
+- Lot 3, étape 2c (bouton clair/sombre), dans une nouvelle conversation, puis les étapes 3 à 6.
+- La fusion dans `main` est de nouveau possible, puisque le texte d’aide est dans l’Index. À décider : fusionner maintenant (après un test sur l’aperçu Cloudflare) ou à la fin du lot 3.
+
+**Problèmes ouverts**
+- **app.js** atteint environ 705 lignes. Le découpage de la phase 2 devient pressant.
+- **Téléphone** : la ligne des outils (recherche, « Au hasard », « Index ») déborde sans doute. À traiter au lot 4.
+- Au retour dans l’Index, la liste revient en haut : la position de défilement n’est pas gardée.
+- Pas d’adresse `#index` : un lien ne peut pas ouvrir directement l’Index.
+- La coupure d’`aria-live` n’a pas été testée avec un vrai lecteur d’écran.
+- La flèche ↗ n’existe peut-être pas dans Archivo (le navigateur prend alors une autre police) : vérifier son rendu sur plusieurs navigateurs.
+- **style.css** : le bloc « Index » s’ajoute en fin de fichier, comme les « Ajouts de la version N ». À ranger en phase 0.
+- Les problèmes ouverts des entrées précédentes restent valables : wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon, avertissement de Seurat, HTML des fiches qui grossit dans app.js, double bloc du mode sombre, `--fond-etiquette` inutilisée, `.filtre .pastille` définie deux fois, alignement de la case « Œuvres majeures seulement » réglé à la main.
+
+**Décisions prises** : aucune.
+
 ## 3 novembre 2026 · Lot 3 : couleurs et bandeau du haut (étapes 1 et 2a)
 **Fait**
 - **Couleurs, mode clair.** Fond papier ambré `#F5EEDF`. Cartes, panneau et recherche en ivoire `#FAF7F0` (`--carte-fond`, `--surface`), un cran plus clair que le fond pour rester lisibles sur les bandes de couleur. `--surface-2` passe à `#EBE1CC`.
