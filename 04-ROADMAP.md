@@ -1,6 +1,6 @@
 # Roadmap
 
-**Étape en cours : lot 3, étape 3 (étiquettes d’artistes).** Les étapes 1, 2a, 2b et 2c du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
+**Étape en cours : lot 3, étape 4 (zoom intermédiaire).** Les étapes 1, 2a, 2b, 2c et 3 du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
 
 ---
 
@@ -56,7 +56,7 @@ Un lot = une branche. À traiter dans cet ordre.
    - **2a** · Fait le 3 novembre 2026. Titre compact et sous-titre, recherche et bouton « Une œuvre au hasard » à droite, sommaire et case « Œuvres majeures seulement » sur la deuxième ligne. Défilement vertical jusqu’à l’œuvre ouverte.
    - **2b** · Fait le 3 novembre 2026. Bouton « Index » (icône à trois traits) qui ouvre l’Index dans le panneau des fiches. On y trouve « Comment lire la frise » (repliable), les onglets Mouvements, Artistes et Œuvres, une recherche, un compteur et une liste. Tri : mouvements par date, artistes de A à Z par nom de famille, œuvres par année. Une fiche ouverte depuis l’Index propose « ‹ Retour à l’index », qui retrouve l’onglet et la recherche.
    - **2c** · Fait le 3 novembre 2026. Bouton clair/sombre, sous « Index » : une lune en mode clair, un soleil en mode sombre. Le réglage de l’appareil s’applique à la première visite ; le choix fait avec le bouton est mémorisé. Un script dans le `<head>` pose toujours `data-theme` avant l’affichage, ce qui évite le flash et ne laisse qu’un seul bloc sombre dans style.css.
-3. **Étiquettes d’artistes** trop vides dans la vue mouvement.
+3. **Étiquettes d’artistes** · Fait le 3 novembre 2026. En vue mouvement, chaque étiquette affiche le nom, « dates · N œuvres ici », « Nationalité … · Disciplines » et, pour un artiste venu d’un autre mouvement, « Surtout : … ». La phrase-clé reste en bulle au survol. Sur téléphone, seuls le nom et les dates restent.
 4. **Un niveau de zoom intermédiaire** entre la vue détail et la vue d’ensemble. Chaque œuvre y reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
 5. **Croix de fermeture** dans le style de la maquette Lovable : un carré bordé sur le fond de la page, avec une croix fine et foncée, au lieu du carré noir plein. À vérifier : la même croix ferme l’image en grand, où une croix sans fond risque de mal se voir.
 6. **Barre du bas en vue mouvement.** Elle s’adapte aux dates du mouvement et fait défiler cette vue, au lieu de ramener à la frise complète. À préciser au début de l’étape : le pas des repères (années, ou tranches de 2 ou 5 ans), car un mouvement court ne couvre qu’une ou deux décennies, et le rôle du bouton « Vue d’ensemble » dans cette vue.
@@ -65,6 +65,7 @@ Un lot = une branche. À traiter dans cet ordre.
 - Revoir toute l’expérience sur petit écran.
 - Bandeau : la première ligne devra tenir le titre, l’Index et « Au hasard » ; le bouton de thème est déjà sur la deuxième ligne, à côté de la case « Œuvres majeures seulement ». Piste : ranger « Au hasard » dans le tiroir Index sur téléphone.
 - Les règles téléphone ajoutées aux étapes 2a et 2b du lot 3 (libellé court « Au hasard », recherche sur toute la largeur, liste des résultats accrochée à gauche, bouton « Index » dans la même ligne) sont provisoires. La ligne des outils déborde sans doute.
+- Étiquettes d’artistes de la vue mouvement : sur téléphone, les compléments (nombre d’œuvres, nationalité, disciplines, « Surtout ») sont cachés (classe `.complement`). À revoir si l’étiquette s’élargit.
 
 **Plus tard (phase 2 ou 3)**
 - Compléter l’Index avec les liens vers les nouvelles pages et sections, à mesure qu’elles existent (Chronologie, Mouvements, Artistes, Parcours, Lexique, À propos).

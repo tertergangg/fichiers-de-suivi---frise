@@ -4,6 +4,34 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 3 novembre 2026 · Lot 3 : étiquettes d’artistes (étape 3)
+**Fait**
+- **Étiquettes de la vue mouvement plus complètes.** Nouvelle fonction `etiquetteArtiste(a, m, nombre)` dans app.js, appelée par `vueMouvement()`. Chaque étiquette affiche :
+  - le nom (inchangé : un clic ouvre la fiche, la phrase-clé reste en bulle au survol) ;
+  - « dates · N œuvres ici ». Le nombre compte les œuvres de l’artiste visibles dans la vue ; il est masqué s’il vaut zéro. L’accord (« 1 œuvre », « 2 œuvres ») réutilise `compter()`, la fonction de l’Index ;
+  - « Nationalité … · Disciplines », chaque morceau seulement s’il existe ;
+  - « Surtout : … » pour un artiste « invité », c’est-à-dire dont le mouvement principal est un autre.
+- **Nationalité courte** : nouvelle fonction `nationaliteCourte()`. Elle garde le premier mot (coupé au premier espace, à la première virgule ou à la première parenthèse) et le met en minuscule : « Roumaine (puis française) » donne « Nationalité roumaine ». Le texte complet reste dans la fiche.
+- **style.css** : les nouvelles lignes reprennent le style des `<small>` existants. Seul ajout : la classe `.complement`, cachée sous 720 px dans le bloc téléphone des « Ajouts de la version 3 ». Sur téléphone, l’étiquette reste donc comme avant (nom et dates).
+- Propositions écartées :
+  - afficher la phrase-clé dans l’étiquette ;
+  - « N œuvres dans la frise », faux, puisque seul ce mouvement est compté ;
+  - « N œuvres dans ce mouvement », trop long pour tenir sur la ligne des dates.
+- Branche `corrections-lot3-v1`, testée en local, commitée.
+
+**Reste à faire**
+- Lot 3, étapes 4 (zoom intermédiaire), 5 (croix de fermeture) et 6 (barre du bas en vue mouvement), dans de nouvelles conversations.
+- Décider de la fusion dans `main` : maintenant (après un test sur l’aperçu Cloudflare) ou à la fin du lot 3.
+
+**Problèmes ouverts**
+- `compter()` sert maintenant hors de l’Index. À ranger avec les outils partagés au découpage de la phase 2.
+- « Nationalité … » suppose que la colonne « Nationalité » du tableur est au féminin (« française »). Rien ne signale une forme masculine.
+- Des disciplines longues passent sur deux lignes et agrandissent un peu la ligne de l’artiste.
+- app.js continue de grossir, comme le HTML fabriqué dans les fonctions de vue et de fiche.
+- Les problèmes ouverts de l’entrée précédente restent valables : ligne des outils sur téléphone, position de l’Index non gardée, pas d’adresse `#index`, `aria-live` non testé avec un lecteur d’écran, rendu de la flèche ↗, blocs ajoutés en fin de style.css, clé `theme` écrite à deux endroits, hauteur du bouton de thème calée à la main, libellé de la bulle du thème mis à jour au survol suivant, wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon, avertissement de Seurat, `--fond-etiquette` inutilisée, `.filtre .pastille` définie deux fois.
+
+**Décisions prises** : aucune.
+
 ## 3 novembre 2026 · Lot 3 : bouton clair/sombre (étape 2c)
 **Fait**
 - **Script dans le `<head>`** d’index.astro (`is:inline`). Il lit le choix mémorisé (`localStorage`, clé `theme`, valeurs `light` ou `dark`). Sans choix, il suit le réglage de l’appareil (`matchMedia`). Il pose toujours `data-theme` sur `<html>` avant l’affichage : pas de flash du mauvais thème. Il est écrit comme une fonction immédiatement appelée, pour que ses variables n’entrent pas en conflit avec celles d’app.js.
