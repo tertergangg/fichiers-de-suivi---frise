@@ -2,7 +2,7 @@
 
 # Roadmap
 
-**Étape en cours : lot 3.** La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
+**Étape en cours : lot 3, étape 2b (tiroir Index).** Les étapes 1 et 2a du lot 3 sont terminées depuis le 3 novembre 2026. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
 
 ---
 
@@ -13,7 +13,7 @@
 - Valider ou modifier les décisions « proposées » de DECISIONS (fait le 2 novembre, sauf D10, reportée).
 - Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
 - Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
-- Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`) et fondre les blocs « Ajouts de la version N » dans les sections qui leur correspondent, sans changement visuel.
+- - Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`, `.filtre .pastille`) et fondre les blocs « Ajouts de la version N » dans les sections qui leur correspondent, sans changement visuel. Supprimer `--fond-etiquette`, inutilisée. Pour le double bloc du mode sombre, voir l’étape 2c du lot 3.
 
 **Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard »), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
@@ -52,13 +52,21 @@ Un lot = une branche. À traiter dans cet ordre.
 **Après D10**
 - Œuvre protégée : message du type « Nous n’avons pas encore les droits pour afficher cette œuvre, mais vous pouvez la retrouver ici », avec un lien. Piste : le « cartel de musée » (voir « Idées à trier »).
 
-**Lot 3 · Design** (demande explicite, en accord avec D3 ; après le rangement de style.css en phase 0)
-- Couleur de fond (pistes : ivoire `#FAF7F0`, papier ambré `#F5EEDF`, kraft `#EFE3CC` ; Lovable propose ivoire `#F8F5EE`) et mode sombre plus doux (brun très foncé, blanc cassé, ombres sombres ; Lovable propose fond `#1A1715`, texte `#F3EEE3`, surfaces `#282320`).
-- Bandeau du haut trop vide, surtout à droite. À refaire dans l’esprit de la maquette Lovable du 3 novembre 2026 (titre à gauche, boutons à droite), en gardant la recherche, la case « Œuvres majeures seulement » et le sommaire des mouvements. Il accueille :
-  - un bouton « Une œuvre au hasard » (validé), qui ouvre la fiche d’une œuvre tirée au sort ;
-  - un bouton « Index », qui ouvre un tiroir sur le modèle du panneau des fiches, avec des onglets Mouvements, Artistes et Œuvres, une recherche et une liste. Le contenu exact du tiroir est à préciser au début du lot.
-- Étiquettes d’artistes trop vides dans la vue mouvement.
-- Un niveau de zoom intermédiaire entre la vue détail et la vue d’ensemble. Chaque œuvre y reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
+**Lot 3 · Design** (demande explicite, en accord avec D3 ; fait avant la phase 0, le rangement de style.css viendra après) · En cours, branche `corrections-lot3-v1`
+1. **Couleurs** · Fait le 3 novembre 2026. Mode clair : fond papier ambré `#F5EEDF`, cartes et panneau ivoire `#FAF7F0`. Mode sombre : fond brun `#1E1A16`, surfaces `#27221D`, texte blanc cassé `#F2EBDD`, ombres brunes `#574B3E`, un peu plus claires que le fond.
+2. **Bandeau du haut**, dans l’esprit de la maquette Lovable du 3 novembre 2026.
+   - **2a** · Fait le 3 novembre 2026. Titre compact et sous-titre, recherche et bouton « Une œuvre au hasard » à droite, sommaire et case « Œuvres majeures seulement » sur la deuxième ligne. Défilement vertical jusqu’à l’œuvre ouverte.
+   - **2b** · Bouton « Index » et son tiroir : onglets Mouvements, Artistes et Œuvres, une recherche, un compteur (« 9 mouvements ») et une liste. Il accueille aussi le texte d’aide retiré du bandeau, sous le titre « Comment lire la frise ». Piste : l’afficher dans le panneau des fiches, avec un lien « Retour à l’index » qui retrouve l’onglet et la recherche. Contenu exact et tri des listes à préciser au début de l’étape.
+   - **2c** · Bouton clair/sombre : une lune, qui devient un soleil. Proposition : le réglage de l’appareil reste le choix par défaut à la première visite ; le bouton le change, et le choix est mémorisé. Prévoir un petit script dans le `<head>` pour éviter un flash du mauvais thème au chargement. Piste : si ce script pose toujours `data-theme`, style.css n’aurait plus besoin que d’un seul bloc pour le mode sombre.
+3. **Étiquettes d’artistes** trop vides dans la vue mouvement.
+4. **Un niveau de zoom intermédiaire** entre la vue détail et la vue d’ensemble. Chaque œuvre y reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
+5. **Croix de fermeture** dans le style de la maquette Lovable : un carré bordé sur le fond de la page, avec une croix fine et foncée, au lieu du carré noir plein. À vérifier : la même croix ferme l’image en grand, où une croix sans fond risque de mal se voir.
+6. **Barre du bas en vue mouvement.** Elle s’adapte aux dates du mouvement et fait défiler cette vue, au lieu de ramener à la frise complète. À préciser au début de l’étape : le pas des repères (années, ou tranches de 2 ou 5 ans), car un mouvement court ne couvre qu’une ou deux décennies, et le rôle du bouton « Vue d’ensemble » dans cette vue.
+
+**Lot 4 · Version téléphone** (phase dédiée, dans sa propre conversation, avant l’ouverture au public)
+- Revoir toute l’expérience sur petit écran.
+- Bandeau : la première ligne devra tenir le titre, l’Index, « Au hasard » et le bouton de thème. Piste : ranger « Au hasard » et le thème dans le tiroir Index sur téléphone.
+- Les règles téléphone ajoutées à l’étape 2a du lot 3 (libellé court « Au hasard », recherche sur toute la largeur, liste des résultats accrochée à gauche) sont provisoires.
 
 **Plus tard (phase 2 ou 3)**
 - Compléter l’Index avec les liens vers les nouvelles pages et sections, à mesure qu’elles existent (Chronologie, Mouvements, Artistes, Parcours, Lexique, À propos).
@@ -81,6 +89,7 @@ Ces idées ne sont pas validées. Une conversation dédiée, avant le début de 
 - Créer une page « À propos ».
 - À décider au début de la phase : les fiches non rédigées ont-elles une page ?
 - À décider au début de la phase : la page d’accueil reste-t-elle la frise, ou devient-elle une page qui y mène (voir « Idées à trier ») ? Dans le second cas, il faut aussi choisir l’adresse de la frise, qui devra rester stable (D9).
+- Découper app.js en plusieurs fichiers (navigation, vues, fiches, recherche, Index…) au moment où il devient `src/scripts/frise.js`.
 
 **Terminé quand** : chaque fiche rédigée a sa page, une vérification automatique confirme qu’aucun lien interne n’est cassé, et le sitemap est généré.
 

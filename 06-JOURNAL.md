@@ -4,6 +4,34 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 3 novembre 2026 · Lot 3 : couleurs et bandeau du haut (étapes 1 et 2a)
+**Fait**
+- **Couleurs, mode clair.** Fond papier ambré `#F5EEDF`. Cartes, panneau et recherche en ivoire `#FAF7F0` (`--carte-fond`, `--surface`), un cran plus clair que le fond pour rester lisibles sur les bandes de couleur. `--surface-2` passe à `#EBE1CC`.
+- **Couleurs, mode sombre.** Fond brun `#1E1A16`, surfaces `#27221D`, `--surface-2` `#332C25`, texte et bordures blanc cassé `#F2EBDD`, texte doux `#B8AE9F`. Les ombres sont brunes (`#574B3E`), un peu plus claires que le fond, pour garder le relief « affiche ». Les deux blocs du mode sombre ont été modifiés à l’identique.
+- **Bandeau compact.** L’en-tête est une grille de deux colonnes : titre | outils, puis sommaire | case « Œuvres majeures seulement ». Le titre passe de 2,6–4,6 rem à 2,2–3 rem. Les dates deviennent un sous-titre (`.sous-titre-site`) : « 1874–1960 · Une histoire en mouvements ». Le texte d’aide est retiré : il reviendra dans le tiroir Index (étape 2b). Le bandeau a ensuite été légèrement agrandi, boutons des mouvements compris. Les règles `.aide` et `.entete h1 span` ont été supprimées.
+- **Bouton « Une œuvre au hasard »** (`#hasard`). Il tire une œuvre qui a une carte sur la frise (une année et un mouvement connu), seulement parmi les majeures si la case est cochée, jamais deux fois de suite la même. Il repasse en vue détail si besoin, puis ouvre la fiche.
+- **Défilement vertical.** `ouvrir(id, true)` centre désormais aussi la carte verticalement : nouvelle fonction `hautCentre()`, et paramètre `haut` ajouté à `allerAnnee()`. La recherche et les liens entre fiches en profitent aussi.
+- Sur téléphone, la liste des résultats de recherche est accrochée à gauche, car accrochée à droite elle risquait de déborder de l’écran.
+- La contradiction de la ROADMAP est tranchée : le lot 3 passe avant la phase 0.
+- Proposition écartée : des chiffres-clés (« 9 mouvements · 34 artistes · 104 œuvres ») dans le bandeau. La place revient aux boutons prévus, et le compteur ira dans l’Index.
+- Branche `corrections-lot3-v1`, testée en local, pas encore fusionnée.
+
+**Reste à faire**
+- Lot 3, étapes 2b (tiroir Index), 2c (bouton clair/sombre), 3, 4, 5 et 6 (voir ROADMAP). L’étape 2b se fera dans une nouvelle conversation.
+- Ne pas fusionner dans `main` avant l’étape 2b : le texte d’aide a quitté le bandeau et n’est pas encore dans l’Index.
+
+**Problèmes ouverts**
+- **Téléphone mis de côté** jusqu’au lot 4 (voir ROADMAP). Les règles téléphone de l’étape 2a sont provisoires.
+- **style.css**, à ajouter au rangement de la phase 0 :
+  - les deux blocs du mode sombre portent les mêmes valeurs : chaque changement doit être fait deux fois ;
+  - `--fond-etiquette` n’est utilisée nulle part ;
+  - la taille de `.filtre .pastille` est définie deux fois.
+- L’alignement de la case « Œuvres majeures seulement » avec la première rangée de mouvements tient à un `margin-top: 0.3rem` réglé à la main. Si la taille des boutons des mouvements change, il faudra le revoir.
+- **app.js** dépasse 570 lignes et va encore grossir avec l’Index. Découpage prévu en phase 2.
+- Les problèmes ouverts des entrées précédentes restent valables : wrangler hors des dépendances, `docs/` et GitHub Pages, docstring de construire.py, onglet « Previews Base » de Cloudflare, favicon, avertissement de Seurat, HTML des fiches qui grossit dans app.js.
+
+**Décisions prises** : aucune. Proposition écartée : les chiffres-clés dans le bandeau.
+
 ## 3 novembre 2026 · Exploration de design avec Lovable
 **Fait**
 - Question posée : reconstruire le site avec Lovable ? Réponse : non. Lovable produit du React, du TypeScript et du Tailwind, contraires à D1 et à l’architecture ; le design (D3) serait réécrit ; il pousse vers une base de données en ligne (contraire à D7) ; le référencement et le coût sont incertains ; la phase 1 serait perdue.
