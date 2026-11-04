@@ -39,3 +39,7 @@ L’identifiant d’un élément (ex. `matisse`) est aussi le nom de sa fiche et
 **D10 · N’afficher que des images dont les droits le permettent** · Proposé, reporté (novembre 2026)
 On s’appuie sur la colonne « Domaine public ? » du tableur. Une œuvre encore protégée s’affiche sans image.
 À trancher avant d’ajouter d’autres images.
+
+**D11 · Plus de GitHub Pages, sans redirection de l’ancienne adresse** · Décidé (novembre 2026)
+GitHub Pages est désactivé et `docs/` supprimé : l’ancienne adresse en github.io renvoie une erreur 404. C’est le choix le plus simple : rien à maintenir jusqu’à la phase 3.
+Alternative écartée : garder `docs/` jusqu’à la phase 3 pour y placer une page de redirection vers le .com.

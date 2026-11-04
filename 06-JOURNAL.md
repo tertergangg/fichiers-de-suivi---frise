@@ -4,6 +4,74 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 4 novembre 2026 · Phase 0 : construire.py, fiches orphelines, docs/, README (étapes 1 à 4)
+**Fait**
+- **Fusion** de `corrections-lot3-suite` dans `main`.
+- **construire.py** :
+  - docstring à jour : elle indique `public/data.js` et rappelle D8 ;
+  - nouvelle fonction `verifier_orphelines(dossier, ids)`, appelée dans `main()` pour les mouvements, les artistes et les œuvres. Elle signale toute fiche sans ligne dans le tableur (« Fiche sans ligne dans le tableur : … »), y compris une fiche rangée dans le mauvais dossier. Elle ne parcourt pas les sous-dossiers : `_gabarits` est ignoré.
+- **Fiches orphelines** : les 12 fiches du JOURNAL du 30 octobre (4 artistes, ball, eluard, manet, miro, et leurs 8 œuvres) sont gardées. Elles sont déplacées avec `git mv` dans `fiches/_en-attente/artistes/` et `fiches/_en-attente/oeuvres/`. Elles n’apparaissent pas sur le site, et les lignes du tableur seront ajoutées plus tard. Alternative écartée : une marque `statut: en attente` dans l’en-tête YAML, qui demandait plus de code.
+- **Gabarit œuvre** : section « Sources » retirée. Les fiches œuvres existantes sont laissées telles quelles. Un script de nettoyage (`retirer_sources.py`) a été écrit, mais n’a pas été utilisé.
+- **docs/ et GitHub Pages** : GitHub Pages est désactivé (branche sur « None », site dépublié) et `docs/` est supprimé. L’ancienne adresse en github.io renvoie une erreur 404 (D11).
+- **README.md remplace LISEZMOI.md** (`git mv`), avec un texte entièrement réécrit. GitHub affiche automatiquement un README sur la page d’accueil du dépôt. Le nouveau texte comprend :
+  - une présentation du projet et l’adresse du site ;
+  - le schéma du flux des données et l’organisation des fichiers ;
+  - l’installation (Python, openpyxl, Node.js, `npm install`) ;
+  - le travail sur le contenu (`python construire.py`, `npm run dev`, `npm run build` puis `npm run preview`) ;
+  - l’ajout d’un élément (règles des identifiants, `_en-attente`) ;
+  - la publication (routine Git et Cloudflare) ;
+  - un tableau « Où modifier quoi ».
+  Tout ce qui concernait Obsidian, Google Sheets, GitHub Desktop, GitHub Pages et `vis.Timeline` est retiré.
+- `python construire.py` ne donne plus que l’avertissement de Seurat.
+- Branche `phase0-construire` (4 commits) testée sur l’aperçu Cloudflare, fusionnée dans `main`, production vérifiée. Branche `phase0-lisezmoi` pour le README.
+
+**Reste à faire**
+- Fusionner `phase0-lisezmoi` dans `main`, si ce n’est pas déjà fait.
+- Phase 0, étape 5 : mettre à jour ARCHITECTURE, dans une nouvelle conversation.
+- Phase 0, étape 6 : ranger style.css, dans une conversation dédiée.
+
+**Problèmes ouverts**
+- Les fiches œuvres créées depuis l’ancien gabarit gardent une section « Sources » vide. C’est sans effet tant qu’une fiche n’est pas rédigée. Une fiche rédigée qui l’a gardée affichera le titre « Sources » et une puce vide : à vérifier.
+- **Fiches en attente** :
+  - les 4 fiches artistes sont d’anciens gabarits, avec une section « Sources » à retirer à leur retour ;
+  - quand une ligne est ajoutée au tableur, il faut ramener la fiche dans son dossier. Sinon, construire.py signale « Fiche manquante ».
+- Les titres du gabarit œuvre (« Ce qu'on voit », « l'audace ») ont une apostrophe droite. `typo()` ne s’applique pas au Markdown des fiches.
+- Le README répète en partie ARCHITECTURE et CONVENTIONS, et les deux finiront par se contredire. Principe proposé : le README reste un mode d’emploi, et le détail technique va dans ARCHITECTURE.
+- Les documents du projet (CONTEXTE, ARCHITECTURE, DECISIONS, ROADMAP, CONVENTIONS, JOURNAL) ne sont pas dans le dépôt. Faut-il les y mettre ? À décider.
+- Avertissements Git « LF will be replaced by CRLF » (réglage `core.autocrlf` de Windows) : sans danger. Piste : un fichier `.gitattributes`.
+- `main()` de construire.py fait près de 100 lignes : à découper quand il écrira `src/data/frise.json` (phase 2).
+- Les problèmes ouverts de l’entrée précédente restent valables, sauf trois points réglés : `docs/` et GitHub Pages, la docstring de construire.py, et LISEZMOI. Restent :
+  - ARCHITECTURE à mettre à jour (étape 5) ;
+  - mouvement court qui tient à l’écran ;
+  - dernières décennies jamais en noir ;
+  - noms `majDecennies()`, `.decennie` et `#decennies` ;
+  - centrage d’une fiche compté en années ;
+  - hauteur de l’axe calculée à deux endroits ;
+  - `changerZoom()` et l’ordre des couloirs ;
+  - clic sur une décennie depuis la vue d’ensemble ;
+  - barre du bas serrée sur téléphone ;
+  - app.js qui grossit ;
+  - `compter()` hors de l’Index ;
+  - nationalité supposée au féminin ;
+  - disciplines longues ;
+  - HTML des fiches dans app.js ;
+  - ligne des outils sur téléphone ;
+  - position de l’Index, pas d’adresse `#index` ;
+  - `aria-live` non testé ;
+  - flèche ↗ ;
+  - blocs en fin de style.css ;
+  - clé `theme` écrite à deux endroits ;
+  - hauteur du bouton de thème ;
+  - libellé de la bulle du thème ;
+  - wrangler hors des dépendances ;
+  - « Previews Base » ;
+  - favicon ;
+  - Seurat ;
+  - `--fond-etiquette` ;
+  - `.filtre .pastille`.
+
+**Décisions prises** : D11 (fin de GitHub Pages, sans redirection).
+
 ## 4 novembre 2026 · Lot 3 terminé : barre du bas en vue mouvement (étape 6)
 **Fait**
 - **Repères adaptés à la vue mouvement.** La liste de la barre du bas n’est plus fabriquée une seule fois au démarrage : `remplirReperes(f)`, appelée par `dessiner()`, la remplit selon la vue.

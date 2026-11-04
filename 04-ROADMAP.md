@@ -1,20 +1,28 @@
 # Roadmap
 
-**Étape en cours : phase 0 (remettre de l’ordre).** Le lot 3 est terminé depuis le 4 novembre 2026 (étape 5 abandonnée) ; la branche `corrections-lot3-suite` reste à fusionner dans `main` après un test sur l’aperçu Cloudflare. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026.
+**Étape en cours : phase 0 (remettre de l’ordre).** Les étapes 1 à 4 sont faites depuis le 4 novembre 2026. Restent ARCHITECTURE et le rangement de style.css. Le lot 3 est terminé et fusionné dans `main` depuis le 4 novembre 2026 (étape 5 abandonnée). La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026.
 
 ---
 
 ## Phase 0 · Remettre de l’ordre (petite)
-- Mettre à jour LISEZMOI.md pour qu’il décrive les vrais outils (Excel, VS Code, Cloudflare) et le vrai fonctionnement de app.js.
-- Régler le cas des fiches qui n’ont pas de ligne dans le tableur (voir JOURNAL).
-- Ajouter à construire.py un avertissement pour ces fiches orphelines, pour que le cas ne se reproduise pas en silence.
-- Valider ou modifier les décisions « proposées » de DECISIONS (fait le 2 novembre, sauf D10, reportée).
-- Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
-- Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
+- Fiches sans ligne dans le tableur · Fait le 4 novembre 2026. Les 12 fiches (ball, eluard, manet, miro et leurs œuvres) sont rangées dans `fiches/_en-attente/`.
+- Avertissement de construire.py pour ces fiches orphelines · Fait le 4 novembre 2026 (`verifier_orphelines()`).
+- Docstring de construire.py · Fait le 4 novembre 2026.
+- Sort de `docs/` · Fait le 4 novembre 2026 : GitHub Pages désactivé, `docs/` supprimé (D11).
+- Mode d’emploi · Fait le 4 novembre 2026 : `README.md`, entièrement réécrit, remplace LISEZMOI.md.
+- Valider ou modifier les décisions « proposées » de DECISIONS · Fait le 2 novembre 2026, sauf D10, reportée.
+- Mettre à jour ARCHITECTURE :
+  - la section app.js : les trois boutons de zoom, les repères de la vue mouvement, le retrait de la ligne de vie ;
+  - l’arborescence : `docs/` supprimé, `fiches/_en-attente/`, LISEZMOI.md devenu README.md ;
+  - la section construire.py : le nouvel avertissement ;
+  - la section Déploiement : la fin de GitHub Pages.
 - Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`, `.filtre .pastille`) et fondre les blocs « Ajouts de la version N » et ceux du lot 3 dans les sections qui leur correspondent, sans changement visuel. Supprimer `--fond-etiquette`, inutilisée.
-- Mettre à jour ARCHITECTURE (section app.js) : les trois boutons de zoom, les repères de la vue mouvement, le retrait de la ligne de vie.
 
-**Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard »), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
+**Terminé quand** :
+- le README est exact ;
+- chaque fiche de `fiches/mouvements`, `fiches/artistes` et `fiches/oeuvres` correspond à une ligne du tableur ;
+- `python construire.py` ne donne aucun avertissement, sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard ») ;
+- toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
 ## Phase 1 · Migrer vers Astro, à l’identique · Terminée le 2 novembre 2026
 Objectif : le même site, reconstruit avec Astro, sans aucun changement visible.
@@ -72,6 +80,7 @@ Un lot = une branche. À traiter dans cet ordre.
 **Plus tard (phase 2 ou 3)**
 - Compléter l’Index avec les liens vers les nouvelles pages et sections, à mesure qu’elles existent (Chronologie, Mouvements, Artistes, Parcours, Lexique, À propos).
 - Contenu : ajouter le néo-impressionnisme à l’onglet Mouvements (avec sa fiche), puis remplacer « néo-impressionnisme » par son identifiant dans la colonne « Autres mouvements » de Seurat. `construire.py` suggérera l’identifiant.
+- Contenu : ajouter au tableur Ball, Eluard, Manet et Miró, avec leurs œuvres, puis ramener leurs fiches de `fiches/_en-attente/` dans `fiches/artistes` et `fiches/oeuvres`. Retirer au passage la section « Sources » des 4 fiches artistes.
 
 ## Idées à trier (proposées par Lovable le 3 novembre 2026)
 Ces idées ne sont pas validées. Une conversation dédiée, avant le début de la phase 2, décidera de ce qu’on garde, sous quelle forme et dans quelle phase. Pour chaque idée retenue, il faudra aussi dire quel contenu est à rédiger : les sections de contenu demandent surtout de l’écriture.
@@ -96,7 +105,7 @@ Ces idées ne sont pas validées. Une conversation dédiée, avant le début de 
 
 ## Phase 3 · Nom de domaine et ouverture au public
 - Choisir le nom, acheter le .com et le brancher sur Cloudflare.
-- Rediriger l’ancienne adresse GitHub Pages.
+- ~~Rediriger l’ancienne adresse GitHub Pages.~~ Abandonné le 4 novembre 2026 : GitHub Pages est désactivé (D11).
 - Ajouter une page 404, un favicon et un aperçu pour le partage sur les réseaux (Open Graph).
 - Déclarer le site dans Google Search Console.
 
