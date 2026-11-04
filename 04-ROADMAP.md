@@ -1,24 +1,20 @@
 # Roadmap
 
-**Étape en cours : phase 0 (remettre de l’ordre).** Les étapes 1 à 4 sont faites depuis le 4 novembre 2026. Restent ARCHITECTURE et le rangement de style.css. Le lot 3 est terminé et fusionné dans `main` depuis le 4 novembre 2026 (étape 5 abandonnée). La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026.
+**Étape en cours : tri des « Idées à trier », puis phase 2 (une page par fiche).** La phase 0 est terminée depuis le 4 novembre 2026, comme le lot 3 (étape 5 abandonnée). La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 4 (téléphone) reste à faire avant l’ouverture au public (phase 3).
 
 ---
 
-## Phase 0 · Remettre de l’ordre (petite)
+## Phase 0 · Remettre de l’ordre (petite) · Terminée le 4 novembre 2026
 - Fiches sans ligne dans le tableur · Fait le 4 novembre 2026. Les 12 fiches (ball, eluard, manet, miro et leurs œuvres) sont rangées dans `fiches/_en-attente/`.
 - Avertissement de construire.py pour ces fiches orphelines · Fait le 4 novembre 2026 (`verifier_orphelines()`).
 - Docstring de construire.py · Fait le 4 novembre 2026.
 - Sort de `docs/` · Fait le 4 novembre 2026 : GitHub Pages désactivé, `docs/` supprimé (D11).
 - Mode d’emploi · Fait le 4 novembre 2026 : `README.md`, entièrement réécrit, remplace LISEZMOI.md.
 - Valider ou modifier les décisions « proposées » de DECISIONS · Fait le 2 novembre 2026, sauf D10, reportée.
-- Mettre à jour ARCHITECTURE :
-  - la section app.js : les trois boutons de zoom, les repères de la vue mouvement, le retrait de la ligne de vie ;
-  - l’arborescence : `docs/` supprimé, `fiches/_en-attente/`, LISEZMOI.md devenu README.md ;
-  - la section construire.py : le nouvel avertissement ;
-  - la section Déploiement : la fin de GitHub Pages.
-- Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`, `.filtre .pastille`) et fondre les blocs « Ajouts de la version N » et ceux du lot 3 dans les sections qui leur correspondent, sans changement visuel. Supprimer `--fond-etiquette`, inutilisée.
+- Mettre à jour ARCHITECTURE · Fait le 4 novembre 2026.
+- Ranger style.css · Fait le 4 novembre 2026. Le fichier est rangé par élément de la page, chaque section avec son bloc téléphone ; les règles en double sont fusionnées et `--fond-etiquette` est supprimée, sans changement visuel. Au passage, le mouvement réduit s’applique enfin aux cartes.
 
-**Terminé quand** :
+**Terminé quand** (tout est vérifié) :
 - le README est exact ;
 - chaque fiche de `fiches/mouvements`, `fiches/artistes` et `fiches/oeuvres` correspond à une ligne du tableur ;
 - `python construire.py` ne donne aucun avertissement, sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard ») ;

@@ -4,6 +4,75 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 4 novembre 2026 · Phase 0 terminée : style.css rangé, ARCHITECTURE à jour (étapes 5 et 6)
+**Fait**
+- **Fusion** de `phase0-lisezmoi` dans `main`.
+- **style.css rangé par élément de la page** (branche `phase0-style`, un commit) :
+  - les sections, dans l’ordre : variables, base, en-tête, défilement et axe, couloirs et étiquettes, pistes et bandes, cartes et événements, vue d’ensemble, bandeau de la vue mouvement, barre du bas, bulles, panneau, fiches, image en grand, Index, mouvement réduit ;
+  - chaque section réunit la disposition et l’apparence de son élément, puis son propre bloc `@media (max-width: 720px)` ;
+  - les blocs « Ajouts de la version N » et ceux du lot 3 sont fondus dans leurs sections ;
+  - les sélecteurs définis plusieurs fois n’apparaissent plus qu’une fois, avec la valeur qui s’appliquait déjà : `.fermer` (3 fois), `.fiche .corps`, `.filtre .pastille`, `.fiche .filet`, `.fiche h2`, `.panneau`, etc. ;
+  - un seul `:root`, qui accueille aussi `--grille-bande`, et un seul bloc sombre ;
+  - `--fond-etiquette` est supprimée.
+- **Défaut corrigé** au passage : le bloc `prefers-reduced-motion` était écrit avant la règle `.carte { transition: … }`, qui l’emportait (même poids, écrite après). L’animation des cartes au survol n’était donc pas coupée. Le bloc est désormais en toute fin de fichier.
+- **Vérification automatique** (script Python avec tinycss2, hors du dépôt) : pour chaque sélecteur et chaque bloc `@media`, les valeurs finales sont identiques avant et après, sauf `--fond-etiquette`. Deux règles de même poids ont changé d’ordre : `.bandeau strong` et `.bande-globale strong` (sans effet, les éléments ne se recoupent pas), et le mouvement réduit (voulu).
+- Le fichier passe de 421 à 480 lignes : moins de règles, mais plus de commentaires.
+- Écart avec le plan : un seul commit au lieu de trois. Séparer la correction du mouvement réduit aurait demandé un fichier intermédiaire qui garde le défaut exprès.
+- **ARCHITECTURE mise à jour** :
+  - arborescence : README.md, `_en-attente`, plus de `docs/`, tailles des fichiers ;
+  - section construire.py : `verifier_orphelines()` ;
+  - section app.js : zoom Moyen, barre du bas, étiquettes d’artistes, hasard, Index, thème ;
+  - section style.css : la nouvelle organisation ;
+  - section Déploiement : fin de GitHub Pages ;
+  - partie B : les points ouverts sont regroupés au début de la phase 2, et le découpage d’app.js est ajouté.
+- Propositions écartées :
+  - garder la séparation « Mise en page » / « Apparence » de style.css, qui coupait chaque élément en deux ;
+  - un seul grand bloc téléphone en fin de fichier, qui aurait éloigné chaque règle de ce qui la modifie.
+
+**Reste à faire**
+- Tester `phase0-style` sur l’aperçu Cloudflare, puis la fusionner dans `main`. Contrôler aussi le mouvement réduit : avec ce réglage activé, les cartes ne glissent plus au survol.
+- Choisir l’étape suivante (voir ROADMAP).
+
+**Problèmes ouverts**
+- **style.css** :
+  - `--trait` n’est utilisée nulle part ;
+  - `--grille-bande` n’a pas de valeur pour le mode sombre. Le rendu identique dans les deux modes est voulu, mais CONVENTIONS demande une valeur sombre pour chaque couleur ;
+  - le blanc `#FFFFFF` est écrit en dur une dizaine de fois (texte sur les bandes de couleur). Piste : une variable `--sur-couleur`.
+- **README et ARCHITECTURE se recoupent** (arborescence, déploiement). Le principe « le README est un mode d’emploi, le détail technique va dans ARCHITECTURE » reste à trancher et à noter.
+- Les problèmes ouverts de l’entrée précédente restent valables, sauf quatre points réglés : ARCHITECTURE, les blocs en fin de style.css, `--fond-etiquette` et `.filtre .pastille`. Restent :
+  - section « Sources » vide dans les fiches œuvres créées avec l’ancien gabarit ;
+  - fiches en attente (ancien gabarit, retour dans leur dossier) ;
+  - apostrophes droites dans les titres du gabarit œuvre ;
+  - documents du projet hors du dépôt ;
+  - avertissements Git LF/CRLF ;
+  - `main()` de construire.py trop long ;
+  - mouvement court qui tient à l’écran ;
+  - dernières décennies jamais en noir ;
+  - noms `majDecennies()`, `.decennie` et `#decennies` ;
+  - centrage d’une fiche compté en années ;
+  - hauteur de l’axe calculée à deux endroits ;
+  - `changerZoom()` et l’ordre des couloirs ;
+  - clic sur une décennie depuis la vue d’ensemble ;
+  - barre du bas serrée sur téléphone ;
+  - app.js qui grossit (≈ 840 lignes) ;
+  - `compter()` hors de l’Index ;
+  - nationalité supposée au féminin ;
+  - disciplines longues ;
+  - HTML des fiches dans app.js ;
+  - ligne des outils sur téléphone ;
+  - position de l’Index, pas d’adresse `#index` ;
+  - `aria-live` non testé ;
+  - flèche ↗ ;
+  - clé `theme` écrite à deux endroits ;
+  - hauteur du bouton de thème ;
+  - libellé de la bulle du thème ;
+  - wrangler hors des dépendances ;
+  - « Previews Base » ;
+  - favicon ;
+  - Seurat.
+
+**Décisions prises** : aucune.
+
 ## 4 novembre 2026 · Phase 0 : construire.py, fiches orphelines, docs/, README (étapes 1 à 4)
 **Fait**
 - **Fusion** de `corrections-lot3-suite` dans `main`.
