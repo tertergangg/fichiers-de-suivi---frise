@@ -4,6 +4,57 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 4 novembre 2026 · Lot 3 : zoom intermédiaire (étape 4), croix gardée (étape 5)
+**Fait**
+- **Fusion** de `corrections-lot3-v1` (étapes 1 à 3) dans `main`. Nouvelle branche `corrections-lot3-suite` pour la suite du lot 3.
+- **Trois niveaux dans la barre du bas** : les boutons « Ensemble », « Moyen » et « Détail » (groupe `.niveaux`, boutons `.niveau` en `aria-pressed`) remplacent le bouton « Vue d’ensemble ». Le niveau affiché est en noir ; aucun ne l’est en vue mouvement.
+- **Le zoom « Moyen » n’est pas une nouvelle vue** : c’est la vue détail avec `etat.moyen = true`. Seule `fenetre()` en tient compte (nouveaux réglages `pxParAnMoyen: 28` et `largeurCarteMoyenne: 140`, mêmes coefficients sur téléphone). Recherche, hasard, décennies, centrage et bandes cliquables marchent donc sans retouche. Alternative écartée : une quatrième vue, qui aurait obligé à modifier une dizaine de tests `etat.vue === "detail"`.
+- **Cartes resserrées** : au zoom Moyen, elles affichent le nom court de l’artiste (`artisteCarte()`). L’aperçu au survol garde le nom complet.
+- **On garde sa place** entre Détail et Moyen : la même année à gauche, et le même couloir en haut, à la même hauteur relative (`repereVertical()`, `hautRepere()`, `changerZoom()`). Depuis la vue d’ensemble ou la vue mouvement, on arrive en haut de la frise (au début du mouvement depuis la vue mouvement).
+- **Nouvelles fonctions** : `zoomMoyen()` et `niveauAffiche()`, qui calculent le niveau à partir de l’état au lieu de le stocker, et `choisirNiveau()`. Le zoom choisi est gardé quand on change de vue, mais pas d’une visite à l’autre.
+- **style.css** : les règles `.decennies .ensemble` sont remplacées sur place par les règles `.niveaux` et `.niveau` (ordinateur et téléphone). Au passage, la règle `.fleche:first-of-type`, qui ne s’appliquait jamais, s’applique désormais : le trait apparaît entre ‹ et « 1860 », et le trait double qui précédait ‹ disparaît.
+- **Choix** : les repères de l’axe restent tous les 5 ans au zoom Moyen (140 px d’écart, lisible).
+- **Propositions écartées** : zoomer avec Ctrl + molette ou en pinçant l’écran (conflit avec le zoom du navigateur, accessibilité) ; mémoriser le zoom.
+- **Étape 5 abandonnée** : la croix de fermeture actuelle est gardée, dans le panneau comme dans l’image en grand.
+- Branche `corrections-lot3-suite`, testée en local, commitée.
+
+**Reste à faire**
+- Lot 3, étape 6 (barre du bas en vue mouvement), dans une nouvelle conversation. Elle devra revoir `choisirNiveau()`.
+- Décider de la fusion de `corrections-lot3-suite` dans `main` : maintenant (après un test sur l’aperçu Cloudflare) ou après l’étape 6.
+- Puis la phase 0.
+
+**Problèmes ouverts**
+- Le centrage d’une fiche ouverte (`allerAnnee(annee - 3, …)`) est compté en années : au zoom Moyen, la carte arrive plus près du bord gauche.
+- `toile.querySelector(".axe").offsetHeight` est calculé à deux endroits (`repereVertical()` et `hautRepere()`). À ranger au découpage de la phase 2.
+- `changerZoom()` repère les couloirs par leur position dans la liste. Cela suppose que Détail et Moyen dessinent les mêmes couloirs dans le même ordre, ce qui est le cas aujourd’hui.
+- Depuis la vue d’ensemble, un clic sur une décennie ramène au dernier zoom choisi, pas forcément à « Détail ».
+- **Téléphone** : la barre du bas, avec ses trois boutons, est serrée. À revoir au lot 4.
+- LISEZMOI et ARCHITECTURE parlent encore du bouton « Vue d’ensemble ».
+- app.js grossit encore d’une quarantaine de lignes.
+- Les problèmes ouverts de l’entrée précédente restent valables, sauf la décision de fusion de `corrections-lot3-v1`, réglée :
+  - `compter()` utilisée hors de l’Index ;
+  - nationalité supposée au féminin ;
+  - disciplines longues sur deux lignes ;
+  - HTML des fiches qui grossit dans app.js ;
+  - ligne des outils sur téléphone ;
+  - position de l’Index non gardée, pas d’adresse `#index` ;
+  - `aria-live` non testé avec un lecteur d’écran ;
+  - rendu de la flèche ↗ ;
+  - blocs ajoutés en fin de style.css ;
+  - clé `theme` écrite à deux endroits ;
+  - hauteur du bouton de thème calée à la main ;
+  - libellé de la bulle du thème mis à jour au survol suivant ;
+  - wrangler hors des dépendances ;
+  - `docs/` et GitHub Pages ;
+  - docstring de construire.py ;
+  - onglet « Previews Base » de Cloudflare ;
+  - favicon ;
+  - avertissement de Seurat ;
+  - `--fond-etiquette` inutilisée ;
+  - `.filtre .pastille` définie deux fois.
+
+**Décisions prises** : aucune. L’abandon de l’étape 5 est noté dans la ROADMAP.
+
 ## 3 novembre 2026 · Lot 3 : étiquettes d’artistes (étape 3)
 **Fait**
 - **Étiquettes de la vue mouvement plus complètes.** Nouvelle fonction `etiquetteArtiste(a, m, nombre)` dans app.js, appelée par `vueMouvement()`. Chaque étiquette affiche :
