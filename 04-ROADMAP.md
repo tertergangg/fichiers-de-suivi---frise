@@ -1,6 +1,6 @@
 # Roadmap
 
-**Étape en cours : lot 3, étape 6 (barre du bas en vue mouvement).** Les étapes 1, 2a, 2b, 2c et 3 du lot 3 sont terminées depuis le 3 novembre 2026 et fusionnées dans `main`, l’étape 4 depuis le 4 novembre 2026 ; l’étape 5 est abandonnée. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026. Le lot 3 passe avant la phase 0.
+**Étape en cours : phase 0 (remettre de l’ordre).** Le lot 3 est terminé depuis le 4 novembre 2026 (étape 5 abandonnée) ; la branche `corrections-lot3-suite` reste à fusionner dans `main` après un test sur l’aperçu Cloudflare. La phase 1, le lot 1 et le lot 2 sont terminés depuis le 2 novembre 2026.
 
 ---
 
@@ -12,6 +12,7 @@
 - Corriger la docstring de construire.py, qui parle encore de `docs/data.js`.
 - Décider du sort de `docs/` selon ce que publie GitHub Pages (voir JOURNAL).
 - Ranger style.css : regrouper les règles définies plusieurs fois (`.fermer`, `.fiche .corps`, `.filtre .pastille`) et fondre les blocs « Ajouts de la version N » et ceux du lot 3 dans les sections qui leur correspondent, sans changement visuel. Supprimer `--fond-etiquette`, inutilisée.
+- Mettre à jour ARCHITECTURE (section app.js) : les trois boutons de zoom, les repères de la vue mouvement, le retrait de la ligne de vie.
 
 **Terminé quand** : LISEZMOI est exact, chaque fiche correspond à une ligne du tableur, `python construire.py` ne donne aucun avertissement (y compris le nouveau), sauf celui de Seurat, qui attend l’ajout du néo-impressionnisme (voir « Plus tard »), et toutes les décisions sont tranchées, sauf D10, reportée (à trancher avant d’ajouter d’autres images).
 
@@ -50,7 +51,7 @@ Un lot = une branche. À traiter dans cet ordre.
 **Après D10**
 - Œuvre protégée : message du type « Nous n’avons pas encore les droits pour afficher cette œuvre, mais vous pouvez la retrouver ici », avec un lien. Piste : le « cartel de musée » (voir « Idées à trier »).
 
-**Lot 3 · Design** (demande explicite, en accord avec D3 ; fait avant la phase 0, le rangement de style.css viendra après) · · En cours, branche `corrections-lot3-suite` (étapes 1 à 3 fusionnées dans `main` depuis `corrections-lot3-v1`)
+**Lot 3 · Design** (demande explicite, en accord avec D3 ; fait avant la phase 0, le rangement de style.css viendra après) · · Terminé, le 4 novembre 2026.
 1. **Couleurs** · Fait le 3 novembre 2026. Mode clair : fond papier ambré `#F5EEDF`, cartes et panneau ivoire `#FAF7F0`. Mode sombre : fond brun `#1E1A16`, surfaces `#27221D`, texte blanc cassé `#F2EBDD`, ombres brunes `#574B3E`, un peu plus claires que le fond.
 2. **Bandeau du haut**, dans l’esprit de la maquette Lovable du 3 novembre 2026.
    - **2a** · Fait le 3 novembre 2026. Titre compact et sous-titre, recherche et bouton « Une œuvre au hasard » à droite, sommaire et case « Œuvres majeures seulement » sur la deuxième ligne. Défilement vertical jusqu’à l’œuvre ouverte.
@@ -59,7 +60,7 @@ Un lot = une branche. À traiter dans cet ordre.
 3. **Étiquettes d’artistes** · Fait le 3 novembre 2026. En vue mouvement, chaque étiquette affiche le nom, « dates · N œuvres ici », « Nationalité … · Disciplines » et, pour un artiste venu d’un autre mouvement, « Surtout : … ». La phrase-clé reste en bulle au survol. Sur téléphone, seuls le nom et les dates restent.
 4. **Un niveau de zoom intermédiaire** · Fait le 4 novembre 2026. Trois boutons dans la barre du bas : « Ensemble », « Moyen », « Détail ». « Moyen » est la vue détail resserrée (28 px par an, cartes de 140 px avec le nom court de l’artiste). Entre Détail et Moyen, on garde la même année à gauche et le même couloir en haut. Chaque œuvre reste une carte : l’idée de remplacer les cartes par des compteurs par décennie est écartée.
 5. **Croix de fermeture** · Abandonné le 4 novembre 2026 : la croix actuelle (carré noir plein) est gardée, dans le panneau comme dans l’image en grand.
-6. **Barre du bas en vue mouvement.** Elle s’adapte aux dates du mouvement et fait défiler cette vue, au lieu de ramener à la frise complète. À préciser au début de l’étape : le pas des repères (années, ou tranches de 2 ou 5 ans), car un mouvement court ne couvre qu’une ou deux décennies, et le rôle du bouton « Vue d’ensemble » dans cette vue.
+6. **Barre du bas en vue mouvement** · Fait le 4 novembre 2026. Les cases s’adaptent aux dates de la vue (pas de 1, 2, 5 ou 10 ans, au plus 11 cases) et un clic fait défiler cette vue. Aucune case n’y est en noir. Les boutons Détail et Moyen, comme « ‹ Toute la frise », ramènent à l’année affichée au bord gauche. En plus : la ligne de vie des artistes est retirée de la vue mouvement.
 
 **Lot 4 · Version téléphone** (phase dédiée, dans sa propre conversation, avant l’ouverture au public)
 - Revoir toute l’expérience sur petit écran.

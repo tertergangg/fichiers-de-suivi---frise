@@ -4,6 +4,62 @@ L’entrée la plus récente est en haut. Chaque entrée indique ce qui a été 
 
 ---
 
+## 4 novembre 2026 · Lot 3 terminé : barre du bas en vue mouvement (étape 6)
+**Fait**
+- **Repères adaptés à la vue mouvement.** La liste de la barre du bas n’est plus fabriquée une seule fois au démarrage : `remplirReperes(f)`, appelée par `dessiner()`, la remplit selon la vue.
+  - En vue détail et en vue d’ensemble, rien ne change : les 11 décennies.
+  - En vue mouvement, des années, avec le pas le plus fin parmi 1, 2, 5 et 10 ans qui donne au plus 11 cases (constantes `PAS_REPERES` et `REPERES_MAX`, fonctions `anneesReperes()` et `pasReperes()`).
+  - La liste n’est refaite que si ses années changent (`clefReperes`), pour qu’un redimensionnement ne fasse pas perdre le focus clavier.
+  - Le libellé de la barre devient « Aller à une année » en vue mouvement.
+- **Clic sur une case** : en vue mouvement, il fait défiler cette vue (`allerAnnee()`) au lieu de ramener à la frise. Seule la vue d’ensemble renvoie encore à la frise.
+- **Case en noir** : seulement en vue détail, celle du bord gauche (dernière case déjà passée, ou la première). Aucune en vue mouvement ni en vue d’ensemble.
+- **Retour à la frise depuis la vue mouvement** : les boutons Détail et Moyen, comme « ‹ Toute la frise », ramènent à l’année affichée au bord gauche (`anneeGauche()`, lue avant le changement de vue), et non plus au début du mouvement. Les trois boutons de zoom restent affichés, aucun en noir.
+- **style.css** : la grille de la barre crée une colonne par case (`grid-auto-flow: column; grid-auto-columns: 1fr`, et `minmax(2.2rem, 1fr)` sur téléphone) au lieu d’en imposer 11. Rendu identique en vue détail.
+- **En plus** : la ligne de vie des artistes est retirée de la vue mouvement (app.js, `vueMouvement()` ; règle `.vie` supprimée de style.css). Les dates restent dans l’étiquette.
+- Propositions écartées :
+  - un gros bouton unique « Toute la frise » dans la barre, qui aurait doublé celui du bandeau et changé la forme de la barre ;
+  - mettre en noir toutes les cases visibles, comme le curseur d’une barre de défilement, essayé puis retiré parce que trop appuyé.
+- Branche `corrections-lot3-suite`, testée en local.
+
+**Reste à faire**
+- Tester `corrections-lot3-suite` sur l’aperçu Cloudflare, puis la fusionner dans `main`.
+- Puis la phase 0.
+
+**Problèmes ouverts**
+- Un mouvement court tient presque entier à l’écran : la vue ne défile pas, et un clic sur une case ne fait rien de visible. La barre sert alors surtout d’échelle.
+- En vue détail, la case noire suit le bord gauche : en fin de frise, les dernières décennies (1950, 1960) ne passent sans doute jamais en noir. Ce défaut existait déjà.
+- Les noms `majDecennies()`, `.decennie` et `#decennies` désignent aussi des années en vue mouvement. À renommer au découpage de la phase 2.
+- LISEZMOI et ARCHITECTURE ne décrivent ni les trois boutons de zoom, ni les repères de la vue mouvement, ni le retrait de la ligne de vie.
+- Les problèmes ouverts de l’entrée précédente restent valables, sauf `choisirNiveau()`, revue à cette étape :
+  - centrage d’une fiche compté en années (au zoom Moyen) ;
+  - hauteur de l’axe calculée à deux endroits ;
+  - `changerZoom()` qui suppose les mêmes couloirs dans le même ordre ;
+  - clic sur une décennie depuis la vue d’ensemble qui ramène au dernier zoom ;
+  - barre du bas serrée sur téléphone ;
+  - app.js qui grossit ;
+  - `compter()` hors de l’Index ;
+  - nationalité supposée au féminin ;
+  - disciplines longues sur deux lignes ;
+  - HTML des fiches dans app.js ;
+  - ligne des outils sur téléphone ;
+  - position de l’Index non gardée, pas d’adresse `#index` ;
+  - `aria-live` non testé ;
+  - flèche ↗ ;
+  - blocs en fin de style.css ;
+  - clé `theme` écrite à deux endroits ;
+  - hauteur du bouton de thème ;
+  - libellé de la bulle du thème ;
+  - wrangler hors des dépendances ;
+  - `docs/` et GitHub Pages ;
+  - docstring de construire.py ;
+  - « Previews Base » ;
+  - favicon ;
+  - Seurat ;
+  - `--fond-etiquette` ;
+  - `.filtre .pastille`.
+
+**Décisions prises** : aucune.
+
 ## 4 novembre 2026 · Lot 3 : zoom intermédiaire (étape 4), croix gardée (étape 5)
 **Fait**
 - **Fusion** de `corrections-lot3-v1` (étapes 1 à 3) dans `main`. Nouvelle branche `corrections-lot3-suite` pour la suite du lot 3.
